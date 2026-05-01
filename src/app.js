@@ -1,14 +1,20 @@
 const sequelize = require('./config/db.js'); 
 const cors = require('cors'); // 1. Importar cors
-// Importamos los modelos para que Sequelize los reconozca antes de sincronizar
-const User = require('./models/User');
-const Post = require('./models/Post');
-const UserService = require('./services/userService.js');
-
 const express = require('express');
-const userRoutes = require('./routes/userRoutes.js'); // Importamos las rutas
+
+// Importamos 'sequelize' y los modelos ya asociados desde el index de la carpeta models
+const { Degree, Subject, Commission, Course } = require('./subjects/models');
+
+
+// Importamos los modelos para que Sequelize los reconozca antes de sincronizar
+const UserService = require('./users/services/userService.js');
+
+// Importamos las rutas para usuarios y posts
+const userRoutes = require('./users/routes/userRoutes.js'); 
+const postRoutes = require('./posts/routes/postRoutes');
 
 const app = express();
+// http://localhost:3000
 const PORT = 3000;
 
 
@@ -22,7 +28,6 @@ app.use(express.json());
 // Vinculamos las rutas. 
 // Todos los endpoints en userRoutes tendrán el prefijo /users
 app.use('/api/v1/users', userRoutes);
-const postRoutes = require('./routes/postRoutes');
 app.use('/api/v1/posts', postRoutes);
 
 async function startServer() {
