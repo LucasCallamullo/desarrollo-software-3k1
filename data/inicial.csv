@@ -1,0 +1,25 @@
+id,nombre,nivel,regimen,carga_horaria,carrera
+1,Análisis Matemático I,1,Anual,5,Ciencias Básicas
+2,Álgebra y Geometría Analítica,1,Anual,5,Ciencias Básicas
+3,Física I,1,Anual,5,Ciencias Básicas
+4,Inglés I,1,Anual,2,Ciencias Básicas
+5,Lógica y Estructuras Discretas,1,Cuatrimestral,3,Ingeniería en Sistemas
+6,Algoritmo y Estructura de Datos,1,Anual,5,Ingeniería en Sistemas
+7,Arquitectura de Computadoras,1,Cuatrimestral,4,Ingeniería en Sistemas
+8,Sistemas y Proceso de Negocios,1,Cuatrimestral,3,Ingeniería en Sistemas
+11,Ingeniería y Sociedad,2,Cuatrimestral,2,Ciencias Básicas
+9,Análisis Matemático II,2,Anual,5,Ciencias Básicas
+10,Física II,2,Anual,5,Ciencias Básicas
+12,Inglés II,2,Anual,2,Ciencias Básicas
+13,Sintaxis y Semántica de los Lenguajes,2,Cuatrimestral,4,Ingeniería en Sistemas
+14,Paradigmas de Programación,2,Cuatrimestral,4,Ingeniería en Sistemas
+15,Sistemas Operativos,2,Anual,4,Ingeniería en Sistemas
+16,Análisis de Sistemas de Información,2,Anual,6,Ingeniería en Sistemas
+17,Probabilidad y Estadística,2,Cuatrimestral,3,Ciencias Básicas
+18,Economía,3,Cuatrimestral,3,Ciencias Básicas
+19,Base de Datos,3,Cuatrimestral,4,Ingeniería en Sistemas
+20,Desarrollo de Software,3,Cuatrimestral,4,Ingeniería en Sistemas
+21,Comunicación de Datos,3,Anual,4,Ingeniería en Sistemas
+22,Análisis Numérico,3,Cuatrimestral,3,Ingeniería en Sistemas
+23,Diseño de Sistemas de Información,3,Anual,6,Ingeniería en Sistemas
+99,Seminario Integrador (Analista),3,Cuatrimestral,4,Ingeniería en Sistemas

@@ -6,7 +6,6 @@ const sequelize = require('../../config/db.js');
 
 // ejemplo yo aca quiero que tenga tambien desde subject y commission_id
 const User = require('../../users/models/User.js'); 
-const Subject = require('../../subjects/models/User.js'); 
 
 class Post extends Model {}
 

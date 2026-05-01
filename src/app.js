@@ -1,9 +1,24 @@
-const sequelize = require('./config/db.js'); 
+
 const cors = require('cors'); // 1. Importar cors
 const express = require('express');
 
-// Importamos 'sequelize' y los modelos ya asociados desde el index de la carpeta models
-const { Degree, Subject, Commission, Course } = require('./subjects/models');
+/**
+ * Import sequelize from the global model registry, not directly from config/db.js
+ * 
+ * WHY THIS CHANGE?
+ * Previously, we might have done:
+ *   const sequelize = require('./config/db.js');
+ * 
+ * Now we do:
+ *   const { sequelize } = require('./models');  --> this import execute 'index.js' by default
+ * 
+ * REASONS:
+ * 1. SINGLE SOURCE OF TRUTH
+ *    - The models/index.js file is the central registry that initializes EVERYTHING
+ *    - It imports all models, establishes associations, AND re-exports sequelize
+ *    - This ensures sequelize is the same instance used by all models
+ */
+const { sequelize } = require('./models');
 
 
 // Importamos los modelos para que Sequelize los reconozca antes de sincronizar
