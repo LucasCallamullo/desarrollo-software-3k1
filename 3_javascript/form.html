@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <!-- External CSS imports for base styles, containers, utilities -->
+    <link rel="stylesheet" href="./staticfiles/base_root.css">
+    <link rel="stylesheet" href="./staticfiles/containers.css">
+    <link rel="stylesheet" href="./staticfiles/gap_utils.css">
+    <link rel="stylesheet" href="./staticfiles/text_utils.css">
+
+    <!-- Custom inline styles for this page -->
+    <style>
+        /* Flag image styling - maintains aspect ratio within 200x200 box */
+        .flag-img {
+            height: 200px;
+            width: 200px;
+            object-fit: scale-down;
+        }
+    </style>
+</head>
+<body>
+    
+    <!-- MAIN CONTENT: Country search interface -->
+    <main class="cont-page mt-6">
+        
+        <!-- Search form for filtering countries by name and/or population -->
+        <form class="d-grid grid-122 gap-3" id="form-paises">
+            
+            <!-- Country name input field -->
+            <label class="d-flex-col gap-2">
+                <span class="bolder">Nombre: </span>  <!-- "Name" in Spanish -->
+                <input type="text" name="name">
+            </label>
+
+            <!-- Population input field -->
+            <label class="d-flex-col gap-2">
+                <span class="bolder">Población: </span>  <!-- "Population" in Spanish -->
+                <input type="text" name="population">
+            </label>
+
+            <!-- Submit button to trigger country search -->
+            <button class="btn p-2 w-min text-truncate grid-col-all align-self-center justify-self-center"
+                type="submit">
+                Buscar Pais/es  <!-- "Search Country/Countries" in Spanish -->
+            </button>
+        </form>
+
+        <!-- Container where search results (country cards) will be dynamically inserted -->
+        <div class="cont-paises">
+            <!-- Results populated here by JavaScript -->
+        </div>
+    </main>
+
+    <!-- JavaScript for country search functionality (placed at bottom for DOM readiness) -->
+    <script src="./paises.js">
+        // External script handles:
+        // - Form submission event
+        // - API calls to country data endpoint
+        // - Dynamic rendering of country cards with flags
+    </script>
+</body>
+</html>
