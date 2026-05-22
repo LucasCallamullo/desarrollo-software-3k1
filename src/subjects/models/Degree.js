@@ -30,7 +30,7 @@ Degree.associate = (models) => {
     // A Degree can have many Subjects (e.g., Systems has AED, PPR, etc.)
     Degree.hasMany(models.Subject, { 
         foreignKey: 'degreeId', 
-        as: 'subjects' 
+        as: 'subjects'        // relacion inversa que se puede llamar 
     });
 };
 

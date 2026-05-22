@@ -20,6 +20,10 @@ const Subject = sequelize.define('Subject', {
         type: DataTypes.STRING,
         allowNull: false
     },
+    year: {
+        type: DataTypes.INTEGER,
+        defaultValue: 1        // valor por defecto
+    },
     /**
      * Foreign Key for the Degree (Carrera).
      * Note: The relationship is officially established in the associate method.
