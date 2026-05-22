@@ -22,7 +22,7 @@ const { sequelize } = require('./models');
 
 
 // Importamos los modelos para que Sequelize los reconozca antes de sincronizar
-const UserService = require('./users/services/userService.js');
+const seed = require('.core/seed/seed.js');
 
 // Importamos las rutas para usuarios y posts
 const userRoutes = require('./users/routes/userRoutes.js'); 
@@ -58,16 +58,16 @@ async function startServer() {
 
         // Opción 2: Recreación total (Desarrollo inicial / Reset)
         // ¡CUIDADO! Ejecuta "DROP TABLE", borrando todos los registros antes de crear.
-        // await sequelize.sync({ force: true }); 
+        await sequelize.sync({ force: true }); 
 
         // Opción 3: Alteración inteligente (Desarrollo activo)
         // Compara el modelo con la DB y añade columnas nuevas sin borrar los datos existentes.
-        await sequelize.sync({ alter: true }); 
+        // await sequelize.sync({ alter: true }); 
 
         console.log('✅ DB Conectada y Sincronizada');
 
         // para crear datos fake
-        UserService.seed();
+        seed.runSeed();
 
         // Iniciamos el servidor
         app.listen(PORT, () => {

@@ -7,27 +7,29 @@ const sequelize = require('../config/db.js');
  * This centralized approach allows cross-module relationships
  * (e.g., Posts belonging to Users, Courses having Teachers, etc.)
  */
-const Degree = require('../subjects/models/Degree');
-const Subject = require('../subjects/models/Subject');
-const Commission = require('../subjects/models/Commission');
-const Course = require('../subjects/models/Course');
+const User = require('../../users/models/User.js');
 
-const Post = require('../posts/models/Post');
-// const Comment = require('../posts/models/Comment');
+const Degree = require('../../subjects/models/Degree.js');
+const Subject = require('../../subjects/models/Subject.js');
+const Commission = require('../../subjects/models/Commission.js');
+const Course = require('../../subjects/models/Course.js');
 
-const User = require('../users/models/User');
+const Post = require('../../posts/models/Post.js');
+const Comment = require('../../posts/models/Comment.js');
+
+
 
 /**
  * Model Registry
  * Groups all models in a single object for easy iteration and association.
  */
 const models = {
-    Degree,
-    Subject,
+    Degree,       
+    Subject,        
     Commission,
     Course,
     Post,
-    // Comment,
+    Comment,
     User
 };
 
