@@ -4,6 +4,8 @@ node_modules/
 
 database.sqlite
 testeo.sqlite
+express_sos_una_cagada.sqlite
 .env
 
-
+0_proofs/
+proofs.*
