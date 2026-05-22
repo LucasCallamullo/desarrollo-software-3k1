@@ -3,21 +3,29 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>User Management - CRUD Demo</title>
 
+    <!-- Bootstrap CSS CDN for styling -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" 
         rel="stylesheet" 
         integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" 
         crossorigin="anonymous">
 
+    <!-- Custom styles (empty - ready for customization) -->
     <style>
     </style>
 </head>
 <body>
     
-
+    <!-- MAIN CONTENT: User creation form -->
     <main class="offset-1 col-10 mt-5">
+        <!-- 
+            Form for creating new users
+            action: Points to local API endpoint (backend running on port 3000)
+            id: Used to attach JavaScript event handlers
+        -->
         <form action="http://localhost:3000/api/v1/users/" id="user-form">
+            <!-- First row: First Name and Last Name fields -->
             <div class="mb-3 row">
                 <label class="col-6">
                     <span>First Name:</span>
@@ -30,6 +38,7 @@
                 </label>
             </div>
 
+            <!-- Second row: Email field (full width) -->
             <div class="mb-3 row">
                 <label class="col-6">
                     <span>Email:</span>
@@ -37,77 +46,126 @@
                 </label>
             </div>
 
+            <!-- Submit button to create user -->
             <button type="submit" class="btn btn-primary">
-                Enviar
+                Enviar  <!-- "Submit" in Spanish -->
             </button>
         </form>
     </main>
 
-
+    <!-- Container for displaying list of existing users -->
     <div id="unico">
-
+        <!-- Users will be dynamically rendered here -->
     </div>
 
+    <!-- JavaScript logic for user CRUD operations -->
     <script>
 
+        /**
+         * Sends a POST request to create a new user
+         * 
+         * @async
+         * @function createUser
+         * @param {Object} user - User object containing firstName, lastName, email
+         * @param {HTMLFormElement} form - The form element (provides action URL)
+         * @returns {Promise<void>}
+         * 
+         * @description
+         * Converts user object to JSON and sends it to the API endpoint
+         * using the POST method with appropriate headers.
+         * 
+         * @example
+         * await createUser({ firstName: "John", lastName: "Doe", email: "john@example.com" }, formElement);
+         */
         async function createUser(user, form) {
 
-            // convertir el objeto a json
+            // Convert JavaScript object to JSON string
             const userJson = JSON.stringify(user);
 
+            // Send POST request to the form's action URL
             const response = await fetch(form.action, {
                 method: "POST",
                 headers: {
-                    "Content-Type": "application/json"
+                    "Content-Type": "application/json"  // Tell server we're sending JSON
                 },
-                body: userJson
+                body: userJson  // Attach JSON data to request body
             });
 
+            // Parse JSON response from server
             const data = await response.json();
-            console.log(data);
+            console.log(data);  // Log created user or error message
         }
 
-
+        /**
+         * Sets up form submission handler
+         * 
+         * @function handleSubmit
+         * @param {HTMLFormElement} form - The form element to attach handler to
+         * 
+         * @description
+         * Adds a submit event listener that:
+         * 1. Prevents default browser form submission
+         * 2. Extracts form data using FormData API
+         * 3. Converts form data to plain object
+         * 4. Calls createUser() to send data to API
+         */
         const handleSubmit = (form) => {
             form.addEventListener("submit", async (e) => {
-                e.preventDefault();
+                e.preventDefault();  // Stop page reload on form submission
 
+                // Extract all form fields as FormData
                 const formData = new FormData(form);
 
+                // Convert FormData entries to a plain JavaScript object
+                // Example: { "firstName": "John", "lastName": "Doe", "email": "john@example.com" }
                 const objeto = Object.fromEntries(formData.entries());
 
-                console.log(objeto);
+                console.log(objeto);  // Log extracted user data
 
+                // Send user data to backend API
                 await createUser(objeto, form);
             });
         }
 
+        // Get form element reference and initialize submit handler
         const form = document.getElementById("user-form");
         handleSubmit(form);
         
-
-
-
+        /**
+         * Fetches and displays all existing users
+         * 
+         * @async
+         * @function main
+         * @description
+         * Makes a GET request to retrieve all users from the API,
+         * then renders them as an HTML list inside the container div.
+         * 
+         * @note This function is currently commented out.
+         * Uncomment to display users when page loads.
+         */
         async function main() {
- 
-            const response = await fetch("http://localhost:3000/api/v1/users/");    // viene list de json
-            const data = await response.json();    // convertimos lista json, a lista de objetos
+            // GET request to fetch all users
+            const response = await fetch("http://localhost:3000/api/v1/users/");    // Returns JSON array
+            const data = await response.json();    // Convert JSON response to array of user objects
+            
+            // Get container element where users will be displayed
             const container = document.getElementById("unico");
 
+            // Generate HTML by mapping each user to a paragraph element
+            // Example output: <p>John - Doe</p><p>Jane - Smith</p>
             const html = data.map(u => {
-                return `<p>${u.firstName} - ${u.lastName}</p>`
-            }).join('');
+                return `<p>${u.firstName} - ${u.lastName}</p>`;
+            }).join('');  // Join array into a single string
 
+            // Insert generated HTML into the DOM
             container.innerHTML = html;
         }
 
-        // main();
-
-
-
+        // main();  // Uncomment to automatically load users on page load
 
     </script>
 
+    <!-- Bootstrap JavaScript bundle (placed at bottom for performance) -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" 
         integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" 
         crossorigin="anonymous">

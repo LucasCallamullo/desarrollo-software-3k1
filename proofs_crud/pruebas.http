@@ -1,16 +1,35 @@
+### ============================================
+### USER ENDPOINTS (CRUD Operations)
+### Base URL: http://localhost:3000/api/v1/users/
+### ============================================
 
-
-
+### GET ALL USERS
+### Retrieves a list of all registered users
+### Response: Array of user objects (JSON)
 GET http://localhost:3000/api/v1/users/
-
-
-
-### Obtener el usuario con ID 1
-GET http://localhost:3000/api/v1/users/1
-
 
 ###
 
+### GET USER BY ID
+### Retrieves a single user by their unique identifier
+### @param id - User ID (path parameter)
+### Response: Single user object (JSON)
+### Example: Get user with ID 1
+GET http://localhost:3000/api/v1/users/1
+
+###
+
+### CREATE NEW USER
+### Adds a new user to the database
+### Method: POST
+### Request Body: JSON object with user fields
+### Required fields: firstName, lastName, email
+###
+### @param firstName - User's first name (string)
+### @param lastName - User's last name (string)
+### @param email - User's email address (must be unique)
+###
+### Response: Created user object with generated ID
 POST http://localhost:3000/api/v1/users/
 Content-Type: application/json
 
@@ -20,9 +39,18 @@ Content-Type: application/json
   "email": "mati@example.com"
 }
 
+###
 
+### UPDATE USER (PARTIAL - PUT)
+### Updates specific fields of an existing user
+### Method: PUT
+### @param id - User ID to update (path parameter: /users/4)
+### Request Body: JSON object with fields to update
 ### 
-
+### Note: PUT typically replaces entire resource,
+### but this implementation allows partial updates
+###
+### Response: Updated user object
 PUT http://localhost:3000/api/v1/users/4
 Content-Type: application/json
 
@@ -30,20 +58,43 @@ Content-Type: application/json
   "lastName": "Martinez"
 }
 
+###
 
-### 
-
+### DELETE USER
+### Removes a user from the database
+### Method: DELETE
+### @param id - User ID to delete (path parameter: /users/4)
+###
+### Response: Confirmation message or deleted user data
 DELETE http://localhost:3000/api/v1/users/4
 
+###
 
+### ============================================
+### POST ENDPOINTS
+### Base URL: http://localhost:3000/api/v1/posts/
+### ============================================
 
-### OBTENER TODOS LOS POSTS
-
+### GET ALL POSTS
+### Retrieves a list of all posts from all users
+### Response: Array of post objects (JSON)
+### Each post includes: id, authorId, text, timestamps
 GET http://localhost:3000/api/v1/posts/
 
+###
 
-### CREAR NUEVO POST
-
+### CREATE NEW POST
+### Adds a new post to the database
+### Method: POST
+### Request Body: JSON object with post fields
+### Required fields: authorId, text
+###
+### @param authorId - ID of the user creating the post (integer, must exist)
+### @param text - Content of the post (string)
+###
+### Response: Created post object with generated ID and timestamps
+###
+### Example: User with ID 5 creates a post
 POST http://localhost:3000/api/v1/posts/
 Content-Type: application/json
 
@@ -51,3 +102,22 @@ Content-Type: application/json
   "authorId": 5,
   "text": "Mi Primer post Mati Matias"
 }
+
+###
+
+### ============================================
+### USAGE NOTES:
+### ============================================
+### 1. Make sure backend server is running on port 3000
+### 2. Install REST Client extension in VS Code to use .http files
+### 3. Click "Send Request" above each endpoint to execute
+### 4. Sequential IDs: /users/1, /users/2, etc. (auto-incremented)
+### 5. Foreign key constraint: posts.authorId must reference existing users.id
+###
+### EXPECTED RESPONSE CODES:
+### - 200 OK: Successful GET, PUT, DELETE
+### - 201 Created: Successful POST
+### - 400 Bad Request: Invalid request body
+### - 404 Not Found: User or resource doesn't exist
+### - 500 Internal Server Error: Server-side issue
+### ============================================
