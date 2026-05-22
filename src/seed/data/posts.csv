@@ -1,0 +1,26 @@
+id,title,author_id,subject_id,created_at
+1,¿Alguien me ayuda con el límite de sucesiones? No entiendo la demostración,1,1,2024-03-10 10:30:00
+2,Comparto apunte de Álgebra - Matrices y Determinantes,2,2,2024-03-12 15:20:00
+3,Clase práctica de Física I - Problemas de cinemática,3,3,2024-03-15 09:45:00
+4,Tips para rendir el parcial de Inglés I,4,4,2024-04-01 18:30:00
+5,Duda sobre estructuras de datos: ¿diferencia entre pila y cola?,5,6,2024-04-05 11:00:00
+6,Recurso de Arquitectura - Apunte sobre pipelining,6,7,2024-04-10 14:15:00
+7,Alguien tiene el TP de Sistemas y Procesos resuelto?,7,8,2024-04-12 20:30:00
+8,Ingeniería y Sociedad - Trabajo práctico sobre ética profesional,8,11,2024-04-15 08:00:00
+9,Duda con series de Fourier - Análisis Matemático II,9,9,2024-04-18 16:45:00
+10,Clase de Física II - Campo eléctrico resumen,10,10,2024-04-20 12:00:00
+11,Inglés II - Vocabulario técnico para sistemas,11,12,2024-04-22 19:00:00
+12,Sintaxis y Semántica - Gramática para el TP,12,13,2024-04-25 10:15:00
+13,Duda sobre pattern matching en Haskell,13,14,2024-04-28 17:30:00
+14,Sistemas Operativos - Ejercicios de planificación resueltos,14,15,2024-05-01 09:00:00
+15,Análisis de Sistemas - Diagramas de secuencia,15,16,2024-05-03 21:00:00
+16,Probabilidad - Ejercicios de combinatoria,16,17,2024-05-05 14:00:00
+17,Economía - Resumen de macroeconomía,17,18,2024-05-08 11:30:00
+18,Consulta sobre JOINs en SQL - Base de Datos,18,19,2024-05-10 16:00:00
+19,Desarrollo de Software - Metodologías ágiles resumen,19,20,2024-05-12 08:45:00
+20,Comunicación de Datos - Modelo OSI explicado,20,21,2024-05-15 13:00:00
+21,Análisis Numérico - Método de Newton-Raphson,1,22,2024-05-18 18:30:00
+22,Diseño de Sistemas - Patrones de arquitectura,2,23,2024-05-20 10:00:00
+23,Consulta sobre el seminario integrador - ¿Cómo elegir tema?,3,24,2024-05-22 15:45:00
+24,Ayuda con punteros en C - Algoritmos,4,6,2024-05-25 22:00:00
+25,Duda sobre herencia en POO - Paradigmas,5,14,2024-05-28 12:30:00

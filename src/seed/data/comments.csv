@@ -1,0 +1,36 @@
+id,content,user_id,post_id,created_at
+1,Gracias por el apunte! Me re ayudó,2,1,2024-03-11 09:15:00
+2,No entendí bien esa parte. Podés subir otro ejemplo?,3,1,2024-03-11 14:20:00
+3,Muy claro todo. Aprobé gracias a esto,5,2,2024-03-13 11:00:00
+4,Te faltó desarrollar el punto 3 igual,7,2,2024-03-13 17:45:00
+5,Excelente resumen! Lo voy a usar para estudiar,1,4,2024-04-02 10:30:00
+6,Alguien tiene la guía de ejercicios completa?,4,5,2024-04-06 08:00:00
+7,La diferencia está en que la pila es LIFO y cola FIFO,6,5,2024-04-06 19:15:00
+8,Genial el apunte de pipelining! Me salvaste,8,6,2024-04-11 12:00:00
+9,Comparto otro ejemplo de pipeline en el drive,9,6,2024-04-11 16:30:00
+10,Alguien se copa a hacer grupo para el TP?,10,7,2024-04-13 09:45:00
+11,Yo me sumo al grupo. Escribime al privado,11,7,2024-04-13 18:00:00
+12,Excelente análisis sobre ética profesional,12,8,2024-04-16 14:15:00
+13,Me costó entender Fourier. Buen resumen,13,9,2024-04-19 10:00:00
+14,Che tenés los ejercicios resueltos de campo eléctrico?,14,10,2024-04-21 20:30:00
+15,Sí. acá los subo al drive: link,15,10,2024-04-22 08:45:00
+16,El vocabulario me re sirvió para el parcial,16,11,2024-04-23 11:00:00
+17,La gramática que pasaste tiene un error en la regla 3,17,12,2024-04-26 15:30:00
+18,Gracias por corregir! Ya lo actualicé,18,12,2024-04-27 09:00:00
+19,Pattern matching en Haskell es difícil al principio. Buen ejemplo,19,13,2024-04-29 13:15:00
+20,Los ejercicios de planificación están perfectos,20,14,2024-05-02 10:30:00
+21,Me ayudó un montón para el parcial,1,14,2024-05-02 18:45:00
+22,El diagrama de secuencia debería incluir el flujo alternativo,2,15,2024-05-04 09:15:00
+23,Combinatoria explicada simple y directa. Gracias!,3,16,2024-05-06 14:00:00
+24,Resumen de economía aprobé el final gracias a esto,4,17,2024-05-09 11:30:00
+25,Te faltó explicar el LEFT JOIN igual,5,18,2024-05-11 20:00:00
+26,Acá te paso un video que lo explica bien: link,6,18,2024-05-12 15:45:00
+27,Scrum vs Kanban. Buenísimo el resumen,7,19,2024-05-13 08:30:00
+28,Modelo OSI explicado de una vez por todas. Gracias!,8,20,2024-05-16 12:15:00
+29,Newton-Raphson me re costaba. Ahora entendí,9,21,2024-05-19 17:45:00
+30,Patrones de arquitectura: falta explicar Microservicios,10,22,2024-05-21 10:00:00
+31,Buen tema para el seminario! Yo elegí React,11,23,2024-05-23 19:30:00
+32,Los punteros en C son un dolor de cabeza. Buen ejemplo,12,24,2024-05-26 14:00:00
+33,Herencia bien explicado. Te faltó polimorfismo,13,25,2024-05-29 09:45:00
+34,Alguien tiene el código del TP de Algoritmos?,14,5,2024-05-30 16:20:00
+35,Yo lo tengo. Pasame tu mail y te lo envío,15,5,2024-05-31 11:10:00
