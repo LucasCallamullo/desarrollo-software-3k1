@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejemplo</title>
+
+    <!-- External stylesheet link -->
+    <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+    <!-- HEADER: Navigation menu section -->
+    <header>
+        <nav>
+            <ul>
+                <li><a href="">Site 1</a></li>
+                <li><a href="">Site 2</a></li>
+                <li><a href="">Site 3</a></li>
+            </ul>
+        </nav>
+    </header>
+    
+    <!-- MAIN CONTENT: Primary page content -->
+    <main>
+        <!-- Page title with blue colored text -->
+        <h1 class="title">
+            <span class="blue">
+                Hola Mundo
+            </span>
+        </h1>
+
+        <!-- Sample paragraph text for demonstration -->
+        <p>Este es un párrafo de prueba.</p>
+        <p>Este es un párrafo de prueba.</p>
+
+        <!-- MODAL SECTION -->
+        <!-- Button trigger for opening the modal -->
+        <button class="btn-green" id="btn-green">
+            <span class="btn-green-transition"></span>
+            <span class="btn-green-gradient"></span>
+            <span class="btn-green-label">Abrir Modal</span>
+        </button>
+
+        <!-- Modal overlay (dark background behind modal) -->
+        <div class="modal-overlay" id="modalOverlay">
+            <!-- Modal content container -->
+            <div class="cont-modal">
+                <!-- Close button (X icon) -->
+                <span class="modal-close-x" id="closeX">&times;</span>
+                
+                <!-- Modal image -->
+                <img src="https://i.pinimg.com/1200x/4b/5c/70/4b5c7078ee3497f8ee1bc68e78bf6be8.jpg" 
+                    alt="fernetcito" 
+                    class="img-fernet">
+                
+                <!-- Optional modal title -->
+                <div class="modal-title">¡Fernet!</div>
+                
+                <!-- Optional modal body text -->
+                <div class="modal-text">
+                Esta es una imagen de un fernet. Puedes agregar aquí cualquier contenido.
+                </div>
+                
+                <!-- Alternative close button (styled button) -->
+                <button class="modal-close-btn" id="closeBtn">Cerrar</button>
+            </div>
+        </div>
+
+        <!-- AUTO-PLAYING CAROUSEL SECTION -->
+        <!-- Infinite horizontal scrolling image slider -->
+        <div class="slider">
+            <div class="slide-track">
+                <!-- Slide 1 -->
+                <div class="slide">
+                    <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/557257/1.png" height="100" width="250" alt="" />
+                </div>
+                <!-- Slide 2 -->
+                <div class="slide">
+                    <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/557257/2.png" height="100" width="250" alt="" />
+                </div>
+                <!-- Slide 3 -->
+                <div class="slide">
+                    <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/557257/3.png" height="100" width="250" alt="" />
+                </div>
+                <!-- Slide 4 -->
+                <div class="slide">
+                    <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/557257/4.png" height="100" width="250" alt="" />
+                </div>
+                <!-- Slide 5 -->
+                <div class="slide">
+                    <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/557257/5.png" height="100" width="250" alt="" />
+                </div>
+                <!-- Slide 6 -->
+                <div class="slide">
+                    <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/557257/6.png" height="100" width="250" alt="" />
+                </div>
+                <!-- Slide 7 -->
+                <div class="slide">
+                    <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/557257/7.png" height="100" width="250" alt="" />
+                </div>
+                <!-- Duplicate slides for seamless looping -->
+                <!-- Slide 8 (duplicate of 1) -->
+                <div class="slide">
+                    <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/557257/1.png" height="100" width="250" alt="" />
+                </div>
+                <!-- Slide 9 (duplicate of 2) -->
+                <div class="slide">
+                    <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/557257/2.png" height="100" width="250" alt="" />
+                </div>
+                <!-- Slide 10 (duplicate of 3) -->
+                <div class="slide">
+                    <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/557257/3.png" height="100" width="250" alt="" />
+                </div>
+                <!-- Slide 11 (duplicate of 4) -->
+                <div class="slide">
+                    <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/557257/4.png" height="100" width="250" alt="" />
+                </div>
+                <!-- Slide 12 (duplicate of 5) -->
+                <div class="slide">
+                    <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/557257/5.png" height="100" width="250" alt="" />
+                </div>
+                <!-- Slide 13 (duplicate of 6) -->
+                <div class="slide">
+                    <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/557257/6.png" height="100" width="250" alt="" />
+                </div>
+                <!-- Slide 14 (duplicate of 7) -->
+                <div class="slide">
+                    <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/557257/7.png" height="100" width="250" alt="" />
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- FOOTER: Currently empty, reserved for future content -->
+    <footer>
+
+    </footer>
+
+    <!-- JavaScript placed at bottom because it depends on DOM nodes that must load first -->
+    <script src="../script.js"> </script>
+</body>
+</html>

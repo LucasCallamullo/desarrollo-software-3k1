@@ -1,0 +1,278 @@
+:root {
+    /* Define variables CSS globales (disponibles en todo el documento) */
+    --bg-color: #f0f0f0;      /* Variable para color de fondo gris claro */
+    --text-primary: black;     /* Variable para color de texto negro */
+    --text-red: red;           /* Variable para color rojo */
+    
+    /* Establece el color de fondo del elemento :root (equivalente al <html>) */
+    background-color: var(--bg-color);  /* Usa la variable --bg-color (#f0f0f0) */
+}
+
+* {
+    /* Selector universal - aplica a TODOS los elementos de la página */
+    box-sizing: border-box;    
+    /* Hace que el padding y border NO aumenten el ancho total del elemento.
+       Ej: width:270px + padding:50px = sigue siendo 270px (el contenido se encoge) */
+}
+
+.title {
+    /* Color del texto: usa la variable --text-red que vale "red" */
+    color: var(--text-red);     /* Resultado: texto rojo */
+    
+    /* Color de fondo del elemento */
+    background-color: aqua;     /* Fondo celeste/aguamarina */
+    
+    /* Espaciado INTERNO (distancia del borde al contenido) */
+    padding-top: 20px;          /* Espacio arriba: 20px */
+    padding-bottom: 20px;       /* Espacio abajo: 20px */
+    padding-left: 50px;         /* Espacio izquierda: 50px */
+    padding-right: 20px;        /* Espacio derecha: 20px */
+    
+    /* Ancho TOTAL del elemento (incluye contenido + padding gracias a box-sizing) */
+    width: 270px;               /* El elemento ocupará exactamente 270px de ancho */
+    /* El contenido útil será: 270 - 50(izq) - 20(der) = 200px */
+    
+    /* Controla cómo se manejan los saltos de línea */
+    white-space: nowrap;        /* Evita saltos de línea - TODO el texto en UNA sola línea */
+    /* Si el texto es más ancho que 200px, se desbordará horizontalmente */
+}
+
+.blue {
+    /* Selector de clase - afecta a elementos con class="blue" */
+    background-color: blue;     /* Establece fondo azul */
+}
+
+@property --rotate {
+  syntax: "<angle>";
+  initial-value: 132deg;
+  inherits: false;
+}
+
+:root {
+  --card-height: 65vh;
+  --card-width: calc(var(--card-height) / 1.5);
+}
+
+
+/* Animación */
+@keyframes scroll {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(calc(-250px * 7)); }
+}
+
+/* Styling */
+.slider {
+    background: white;
+    box-shadow: 0 10px 20px -5px rgba(0, 0, 0, .125);
+    height: 100px;
+    margin: auto;
+    overflow: hidden;
+    position: relative;
+    width: 960px;
+}
+
+/* Gradiente blanco - pseudo-elemento before (izquierda) */
+.slider::before {
+    background: linear-gradient(to right, rgba(255,255,255,1) 0%, rgba(255,255,255,0) 100%);
+    content: "";
+    height: 100px;
+    position: absolute;
+    width: 200px;
+    z-index: 2;
+    left: 0;
+    top: 0;
+}
+
+/* Gradiente blanco - pseudo-elemento after (derecha) */
+.slider::after {
+    background: linear-gradient(to right, rgba(255,255,255,1) 0%, rgba(255,255,255,0) 100%);
+    content: "";
+    height: 100px;
+    position: absolute;
+    width: 200px;
+    z-index: 2;
+    right: 0;
+    top: 0;
+    transform: rotateZ(180deg);
+}
+
+.slider .slide-track {
+    animation: scroll 40s linear infinite;
+    display: flex;
+    width: calc(250px * 14);  /* 3500px */
+}
+
+.slider .slide {
+    height: 100px;
+    width: 250px;
+}
+
+
+
+
+/* Estilos del botón (los que ya tenías) */
+.btn-green {
+  font-size: 17px;
+  padding: 1em 2.7em;
+  font-weight: 500;
+  background: #1f2937;
+  color: white;
+  border: none;
+  position: relative;
+  overflow: hidden;
+  border-radius: 0.6em;
+  cursor: pointer;
+}
+
+.btn-green-gradient {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  border-radius: 0.6em;
+  margin-top: -0.25em;
+  background-image: linear-gradient(
+    rgba(0, 0, 0, 0),
+    rgba(0, 0, 0, 0),
+    rgba(0, 0, 0, 0.3)
+  );
+}
+
+.btn-green-label {
+  position: relative;
+  top: -1px;
+}
+
+.btn-green-transition {
+  transition-timing-function: cubic-bezier(0, 0, 0.2, 1);
+  transition-duration: 500ms;
+  background-color: rgba(16, 185, 129, 0.6);
+  border-radius: 9999px;
+  width: 0;
+  height: 0;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.btn-green:hover .btn-green-transition {
+  width: 14em;
+  height: 14em;
+}
+
+.btn-green:active {
+  transform: scale(0.97);
+}
+
+/* ========== ESTILOS DEL MODAL ========== */
+
+/* Fondo oscuro detrás del modal (overlay) */
+.modal-overlay {
+  position: fixed;     /* Fijo en la pantalla, no se mueve al hacer scroll */
+  top: 0;
+  left: 0;
+  width: 100%;         /* Ocupa todo el ancho */
+  height: 100%;        /* Ocupa todo el alto */
+  background-color: rgba(0, 0, 0, 0.5); /* Fondo semitransparente negro */
+  backdrop-filter: blur(5px); /* Efecto de desenfoque (opcional, moderno) */
+  z-index: 1000;       /* Asegura que esté por encima de todo */
+  
+  /* Flexbox para centrar el modal */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  
+  /* Oculto por defecto */
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease; /* Transición suave */
+}
+
+/* Cuando el overlay está activo (visible) */
+.modal-overlay.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Contenedor del contenido del modal */
+.cont-modal {
+  background: white;    /* Fondo blanco para el modal */
+  border-radius: 12px;  /* Bordes redondeados */
+  padding: 20px;        /* Espaciado interno */
+  max-width: 90%;       /* Responsive: máximo 90% en móviles */
+  width: 400px;         /* Ancho fijo en desktop */
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2); /* Sombra para dar profundidad */
+  
+  /* Animación de entrada */
+  transform: scale(0.7); /* Comienza más pequeño */
+  transition: transform 0.3s ease;
+}
+
+/* Cuando el overlay está activo, el modal crece */
+.modal-overlay.active .cont-modal {
+  transform: scale(1);  /* Tamaño normal */
+}
+
+/* Estilos de la imagen dentro del modal */
+.img-fernet {
+  width: 100%;          /* Ocupa todo el ancho del modal */
+  height: auto;         /* Altura automática para mantener proporción */
+  max-height: 300px;    /* Altura máxima */
+  object-fit: contain;  /* La imagen se ajusta sin cortarse */
+  border-radius: 8px;   /* Bordes redondeados */
+  margin-bottom: 15px;  /* Separación con el texto */
+}
+
+/* Título del modal (opcional, lo agregué para ejemplo) */
+.modal-title {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 10px;
+  color: #1f2937;
+}
+
+/* Texto del modal */
+.modal-text {
+  font-size: 16px;
+  color: #4b5563;
+  margin-bottom: 20px;
+  line-height: 1.5;
+}
+
+/* Botón para cerrar el modal */
+.modal-close-btn {
+  background: #ef4444;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background 0.2s;
+}
+
+.modal-close-btn:hover {
+  background: #dc2626;
+}
+
+/* Botón de cerrar en la esquina superior derecha (X) */
+.modal-close-x {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  font-size: 24px;
+  cursor: pointer;
+  color: #9ca3af;
+  transition: color 0.2s;
+}
+
+.modal-close-x:hover {
+  color: #ef4444;
+}
+
+/* Ajuste para la posición relativa en el modal */
+.cont-modal {
+  position: relative;   /* Para posicionar la X absoluta */
+}
