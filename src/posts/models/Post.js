@@ -1,61 +1,93 @@
-const { Model, DataTypes } = require('sequelize');
-const sequelize = require('../../config/db.js'); 
+const { DataTypes } = require('sequelize');
+const sequelize = require('../../config/db.js');
 
-// Importamos User para crear la relación.
-// aunque supongo que esto debera ir a ese index js pero de esta app models? 
-
-// ejemplo yo aca quiero que tenga tambien desde subject y commission_id
-const User = require('../../users/models/User.js'); 
-
-class Post extends Model {}
-
-Post.init({
-    // 'id': Creado automáticamente por Sequelize.
-    text: {
-        type: DataTypes.STRING,
-        // En Django, blank=True permite strings vacíos ("").
-        // En Sequelize, allowNull: false obliga a que el campo exista, 
-        // pero permite que sea un string vacío "" a menos que agregues una validación.
-        allowNull: false 
+/**
+ * Post Model
+ * 
+ * Represents a blog post written by a User.
+ * Can optionally be associated with a Subject and/or Commission.
+ */
+const Post = sequelize.define('Post', {
+    id: {
+        type: DataTypes.INTEGER,
+        primaryKey: true,
+        autoIncrement: true
+    },
+    title: {
+        type: DataTypes.TEXT,
+        allowNull: false
+    },
+    content: {
+        type: DataTypes.TEXT,
+        allowNull: true
+    },
+    /**
+     * Foreign Key: User (author)
+     * Cannot be null - every post must have an author
+     */
+    authorId: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+        field: 'author_id'
+    },
+    /**
+     * Foreign Key: Subject (optional)
+     * A post can be related to a specific subject (e.g., AED, DDS)
+     * Can be null because a post might be general
+     */
+    subjectId: {
+        type: DataTypes.INTEGER,
+        allowNull: true,
+        field: 'subject_id'
+    },
+    /**
+     * Foreign Key: Commission (optional)
+     * A post can be related to a specific commission (e.g., Commission 1)
+     * Can be null because a post might be general or subject-wide
+     */
+    commissionId: {
+        type: DataTypes.INTEGER,
+        allowNull: true,
+        field: 'commission_id'
     }
-}, { 
-    sequelize, 
-    modelName: 'post', // Nombre de la tabla en SQL será 'posts'.
-    timestamps: true,   // Crea automáticamente las columnas 'createdAt' y 'updatedAt'.
-    underscored: true // Convierte createdAt -> created_at automáticamente
-});
-
-
-/**
- * RELACIONES
- * Importante: Definir la relación no obliga a que sea Eager o Lazy.
- * Eso lo decidís vos al momento de hacer el User.findOne() o Post.findAll().
- */
-
-// User.hasMany: Relación 1 a N.
-// Agrega métodos al objeto User como: user.getPosts(), user.addPost(), etc.
-User.hasMany(Post, { 
-    foreignKey: { name: 'authorId', field: 'author_id' }, 
-    as: 'posts'  // Alias: Cuando hagas user.getPosts() o uses include: ['posts'].
-});
-
-// Post.belongsTo: Relación N a 1.
-// Agrega métodos al objeto Post como: post.getAutor(), post.setAutor().
-Post.belongsTo(User, { 
-    foreignKey: { name: 'authorId', field: 'author_id' }, 
-    as: 'author'  // ¿Qué es esto? Es el alias para acceder al objeto padre.
-                // Te permite hacer: post.autor.firstName para ver quién lo escribió.
+}, {
+    tableName: 'posts',
+    timestamps: true,
+    underscored: true  // created_at, updated_at
 });
 
 /**
- * --- EJEMPLO DE USO (Para tu app.js o lógica de negocio) ---
- * * 1. EAGER LOADING (Carga de una):
- * const usuarioConPosts = await User.findByPk(1, { include: 'posts' });
- * console.log(usuarioConPosts.posts); // Ya están acá, no hace falta otra consulta.
- * * 2. LAZY LOADING (Carga bajo demanda):
- * const usuario = await User.findByPk(1); 
- * const susPosts = await usuario.getPosts(); // Recién acá hace la consulta a la tabla posts.
+ * Define associations for the Post model.
+ * 
+ * This follows the "associate" pattern to avoid circular dependencies.
+ * All relationships are defined here, not directly in the model file.
+ * 
+ * @param {Object} models - All registered models from the global registry
  */
+Post.associate = (models) => {
+    // Post belongs to a User (author) - REQUIRED
+    Post.belongsTo(models.User, {
+        foreignKey: 'authorId',
+        as: 'author'
+    });
 
+    // Post belongs to a Subject (optional) - a post can be about a subject
+    Post.belongsTo(models.Subject, {
+        foreignKey: 'subjectId',
+        as: 'subject'
+    });
+
+    // Post belongs to a Commission (optional) - specific to a commission
+    Post.belongsTo(models.Commission, {
+        foreignKey: 'commissionId',
+        as: 'commission'
+    });
+
+    // Post has many Comments
+    Post.hasMany(models.Comment, {
+        foreignKey: 'postId',
+        as: 'comments'
+    });
+};
 
 module.exports = Post;
