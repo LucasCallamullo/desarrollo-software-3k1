@@ -67,44 +67,6 @@ class UserService {
         await user.destroy();
         return true;
     }
-
-
-    /**
-     * Genera datos de prueba iniciales en la base de datos.
-     * Útil para desarrollo y testing.
-     */
-    static async seed() {
-        /**
-         * Iniciamos la transacción gestionada.
-         * Sequelize ejecutará el COMMIT si la función llega al final,
-         * o un ROLLBACK si se lanza una excepción (throw).
-         */
-        try {
-            await sequelize.transaction(async (t) => {
-                // SQL Transaccion  ---> checkpoint
-
-                const count = await User.count({ transaction: t });
-                
-                if (count > 0) {
-                    console.log('🌱 La base de datos ya tiene datos, omitiendo el seed.');
-                    return;
-                }
-
-                // Es CRUCIAL pasar { transaction: t } en cada operación
-                await User.bulkCreate([
-                    { firstName: "Lucas", lastName: "Callamullo", email: "lucas@example.com" },
-                    { firstName: "Juan", lastName: "Perez", email: "juan.perez@gmail.com" },
-                    { firstName: "Maria", lastName: "Sosa", email: "mary@gmail.com" }
-                ], { transaction: t });
-
-                console.log('✅ Datos de prueba (Seed) insertados con éxito en la transacción.');
-            });
-
-        } catch (error) {
-            // Si algo falló adentro, el ROLLBACK ya se ejecutó automáticamente.
-            console.error('❌ Error en el Seed (Se hizo Rollback):', error);
-        }
-    }
 }
 
 module.exports = UserService;
