@@ -1,5 +1,5 @@
 const User = require('../models/User');
-const sequelize = require('../../config/db.js'); 
+const sequelize = require('../../core/config/db');
 
 /**
  * Servicio encargado de la lógica de negocio para la entidad Usuario.

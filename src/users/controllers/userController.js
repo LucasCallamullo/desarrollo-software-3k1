@@ -12,6 +12,7 @@ class UserController {
      * @param {import('express').Request} req 
      * @param {import('express').Response} res 
      */
+    // rate_limit de 30 peticiones por minuto
     static async getUsers(req, res) {
         try {
             // Delegamos la lógica de obtención de datos al servicio
