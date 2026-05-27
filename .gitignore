@@ -98,7 +98,8 @@ temp/
 # ============================================
 # ARCHIVOS DE MÓDULOS NODE (avanzados)
 # ============================================
-package-lock.json      
+package-lock.json
+jsonconfig.json
 yarn.lock             
 pnpm-lock.yaml        
 # NOTA: Los archivos lock SÍ suelen subirse en proyectos serios para garantizar 
