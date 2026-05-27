@@ -159,14 +159,7 @@ async function seedPosts() {
         console.log(`✅ Posts ALREADY loaded (${count} existing records)`);
         return;
     }
-
-    // Alternative check using findOne (redundant but kept for safety)
-    const exists = await Post.findOne();
-    if (exists) {
-        console.log(`✅ Posts ALREADY loaded`);
-        return;
-    }
-
+    
     // STEP 3: Validate that all authors (foreign keys) exist in the Users table
     // Extract unique author IDs from the CSV data
     const authorIds = [...new Set(posts.map(p => p.author_id))];
@@ -353,7 +346,7 @@ async function seedSubjects() {
     };
 
     // Leer CSV con filtro opcional
-    const subjects = readCSV(csvPath, customFilter);
+    const subjects = readCSV(csvPath, createUniqueBasicSubjectsFilter);
     
     if (subjects.length === 0) {
         console.log(`⚠️ No se encontraron materias para cargar (posiblemente todas fueron filtradas)`);

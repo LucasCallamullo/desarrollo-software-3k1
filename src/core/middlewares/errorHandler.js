@@ -13,6 +13,21 @@ const errorHandler = (err, req, res, next) => {
             ...(err.details && { details: err.details })
         });
     }
+
+    // Handle JWT specific errors (if they somehow bypass AppError)
+    if (err.name === 'JsonWebTokenError') {
+        return res.status(403).json({
+            success: false,
+            error: 'Invalid token.'
+        });
+    }
+    
+    if (err.name === 'TokenExpiredError') {
+        return res.status(403).json({
+            success: false,
+            error: 'Token expired. Please login again.'
+        });
+    }
     
     // Handle Sequelize validation errors
     if (err.name === 'SequelizeValidationError') {
