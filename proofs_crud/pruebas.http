@@ -3,6 +3,9 @@
 ### Base URL: http://localhost:3000/api/v1/users/
 ### ============================================
 
+@accessToken = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJqdWFuLnBlcmV6QGV4YW1wbGUuY29tIiwicm9sZSI6InVzZXIiLCJpYXQiOjE3Nzk3NjY5NzIsImV4cCI6MTc3OTc2Nzg3Mn0.y-yOvueaLSB3IdFpvovdROlSPOVitVLA9Uzqzcn6zMU
+
+
 ### GET ALL USERS
 ### Retrieves a list of all registered users
 ### Response: Array of user objects (JSON)
@@ -31,6 +34,7 @@ GET http://localhost:3000/api/v1/users/1
 ###
 ### Response: Created user object with generated ID
 POST http://localhost:3000/api/v1/users/
+# POST http://localhost:3000/api/v1/clientes/
 Content-Type: application/json
 
 {
@@ -96,14 +100,23 @@ GET http://localhost:3000/api/v1/posts/
 ###
 ### Example: User with ID 5 creates a post
 POST http://localhost:3000/api/v1/posts/
+Authorization: Bearer {{accessToken}}
 Content-Type: application/json
 
 {
-  "authorId": 5,
-  "text": "Mi Primer post Mati Matias"
+  "authorId": 1,
+  "title": "Mi Primer post Mati Matias dejate de joder"
 }
 
 ###
+
+POST http://localhost:3000/api/v1/login
+Content-Type: application/json
+
+{
+  "email": "juan.perez@example.com",
+  "password": "1234"
+}
 
 ### ============================================
 ### USAGE NOTES:

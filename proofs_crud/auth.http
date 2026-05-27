@@ -1,0 +1,183 @@
+### ============================================================
+### AUTHENTICATION API TESTS
+### ============================================================
+### 
+### This file contains HTTP requests for testing the authentication module.
+### It covers:
+###   - Public endpoints (no token required)
+###   - Protected endpoints (valid token required)
+###   - Role-based access control (user, editor, admin)
+###   - Authentication (login, logout, refresh)
+###   - Error scenarios (invalid token, missing token, wrong role)
+###
+### Requirements:
+###   - Extension: REST Client (humao.rest-client) for VS Code
+###   - Server must be running on {{baseUrl}}
+###   - Update {{accessToken}} after login
+###
+### ============================================================
+
+### ============================================================
+### VARIABLES (Update {{accessToken}} after successful login)
+### ============================================================
+
+@baseUrl = http://localhost:3000
+@accessToken = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJqdWFuLnBlcmV6QGV4YW1wbGUuY29tIiwicm9sZSI6InVzZXIiLCJpYXQiOjE3Nzk3NjY5NzIsImV4cCI6MTc3OTc2Nzg3Mn0.y-yOvueaLSB3IdFpvovdROlSPOVitVLA9Uzqzcn6zMU
+
+### ============================================================
+### 1. AUTHENTICATION ENDPOINTS (Public)
+### ============================================================
+
+### 1.1 Login - Regular user (role: user)
+# @name loginUser
+POST {{baseUrl}}/api/v1/auth/login
+Content-Type: application/json
+
+{
+  "email": "juan.perez@example.com",
+  "password": "1234"
+}
+
+### 1.2 Login - Admin user (role: admin)
+# @name loginAdmin
+POST {{baseUrl}}/api/v1/auth/login
+Content-Type: application/json
+
+{
+  "email": "admin@example.com",
+  "password": "1234"
+}
+
+### 1.3 Login - Invalid credentials (should return 401)
+POST {{baseUrl}}/api/v1/auth/login
+Content-Type: application/json
+
+{
+  "email": "invalid@example.com",
+  "password": "wrongpassword"
+}
+
+### 1.4 Logout - Clear refresh token cookie
+POST {{baseUrl}}/api/v1/auth/logout
+
+### 1.5 Refresh - Get new access token using refresh token cookie
+POST {{baseUrl}}/api/v1/auth/refresh
+
+### ============================================================
+### 2. TEST ENDPOINTS (Development only)
+### ============================================================
+
+### 2.1 Public endpoint - No token required
+GET {{baseUrl}}/api/v1/auth/test/public
+
+### 2.2 Public endpoint - With token (still works, public)
+GET {{baseUrl}}/api/v1/auth/test/public
+Authorization: Bearer {{accessToken}}
+
+### 2.3 Protected endpoint - Valid token required
+GET {{baseUrl}}/api/v1/auth/test/protected
+Authorization: Bearer {{accessToken}}
+
+### 2.4 Protected endpoint - Missing token (should return 401)
+GET {{baseUrl}}/api/v1/auth/test/protected
+
+### 2.5 Get current user info - Token details
+GET {{baseUrl}}/api/v1/auth/test/me
+Authorization: Bearer {{accessToken}}
+
+### ============================================================
+### 3. ROLE-BASED ACCESS CONTROL TESTS
+### ============================================================
+
+### 3.1 User-only endpoint - Should work (role: user)
+GET {{baseUrl}}/api/v1/auth/test/user
+Authorization: Bearer {{accessToken}}
+
+### 3.2 Editor-only endpoint - Should fail (403) for regular user
+GET {{baseUrl}}/api/v1/auth/test/editor
+Authorization: Bearer {{accessToken}}
+
+### 3.3 Admin-only endpoint - Should fail (403) for regular user
+GET {{baseUrl}}/api/v1/auth/test/admin
+Authorization: Bearer {{accessToken}}
+
+### 3.4 Multi-role endpoint (admin, editor) - Should fail (403) for regular user
+GET {{baseUrl}}/api/v1/auth/test/multi-role
+Authorization: Bearer {{accessToken}}
+
+### ============================================================
+### 4. TOKEN DEBUGGING ENDPOINTS
+### ============================================================
+
+### 4.1 Decode token without verification (only shows payload, no signature check)
+POST {{baseUrl}}/api/v1/auth/test/decode-token
+Content-Type: application/json
+
+{
+  "token": "{{accessToken}}"
+}
+
+### 4.2 Verify token with signature check (requires valid JWT_SECRET)
+POST {{baseUrl}}/api/v1/auth/test/verify-token
+Content-Type: application/json
+
+{
+  "token": "{{accessToken}}"
+}
+
+### ============================================================
+### 5. ERROR SCENARIO TESTS
+### ============================================================
+
+### 5.1 Invalid token format (should return 403)
+GET {{baseUrl}}/api/v1/auth/test/protected
+Authorization: Bearer invalid.token.format.123
+
+### 5.2 Expired token simulation (use a known expired token)
+# GET {{baseUrl}}/api/v1/auth/test/protected
+# Authorization: Bearer <expired_token_here>
+
+### 5.3 Nonexistent route (should return 404)
+GET {{baseUrl}}/api/v1/auth/test/nonexistent-route
+
+### 5.4 Missing Authorization header (should return 401)
+GET {{baseUrl}}/api/v1/auth/test/protected
+
+### ============================================================
+### 6. QUICK TEST WORKFLOW (Recommended order)
+### ============================================================
+###
+### 1. Run "Login - Regular user" to get an access token
+### 2. Copy the accessToken from response and update @accessToken variable
+### 3. Run "Protected endpoint - Valid token required" to verify token works
+### 4. Run "User-only endpoint" to test role access
+### 5. Run "Admin-only endpoint" to verify role restriction (should fail)
+### 6. Run "Logout" to clear the refresh token cookie
+###
+### ============================================================
+
+### ============================================================
+### 7. EXPECTED RESPONSES REFERENCE
+### ============================================================
+###
+### ┌─────────────────────┬──────────┬─────────────────────────────────┐
+### │ Endpoint            │ Status   │ Description                     │
+### ├─────────────────────┼──────────┼─────────────────────────────────┤
+### │ POST /login         │ 200      │ Returns accessToken + user info │
+### │ POST /login         │ 400      │ Missing email or password       │
+### │ POST /login         │ 401      │ Invalid credentials             │
+### │ POST /logout        │ 200      │ Clears cookie, returns success  │
+### │ POST /refresh       │ 200      │ Returns new accessToken         │
+### │ POST /refresh       │ 401      │ No refresh token cookie         │
+### │ POST /refresh       │ 403      │ Invalid or expired refresh token│
+### │ GET /test/public    │ 200      │ Always accessible               │
+### │ GET /test/protected │ 200      │ Valid token required            │
+### │ GET /test/protected │ 401      │ No token provided               │
+### │ GET /test/protected │ 403      │ Invalid/expired token           │
+### │ GET /test/user      │ 200      │ Role: user only                 │
+### │ GET /test/editor    │ 403      │ Role: editor required           │
+### │ GET /test/admin     │ 403      │ Role: admin required            │
+### │ GET /test/multi-role│ 403      │ Role: admin or editor required  │
+### └─────────────────────┴──────────┴─────────────────────────────────┘
+###
+### ============================================================
