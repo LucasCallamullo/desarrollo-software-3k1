@@ -159,7 +159,7 @@ async function seedPosts() {
         console.log(`✅ Posts ALREADY loaded (${count} existing records)`);
         return;
     }
-    
+
     // STEP 3: Validate that all authors (foreign keys) exist in the Users table
     // Extract unique author IDs from the CSV data
     const authorIds = [...new Set(posts.map(p => p.author_id))];
@@ -331,7 +331,7 @@ async function seedSubjects() {
         return (subject) => {
             // EXCLUDE: Non-basic sciences subjects
             if (subject.carrera !== 'Ciencias Básicas') {
-                return true;  // Skip this subject (exclude)
+                return false;  // Skip this subject (exclude)
             }
             
             // If this subject name hasn't been seen yet
@@ -346,7 +346,7 @@ async function seedSubjects() {
     };
 
     // Leer CSV con filtro opcional
-    const subjects = readCSV(csvPath, createUniqueBasicSubjectsFilter);
+    const subjects = readCSV(csvPath, createUniqueBasicSubjectsFilter());
     
     if (subjects.length === 0) {
         console.log(`⚠️ No se encontraron materias para cargar (posiblemente todas fueron filtradas)`);

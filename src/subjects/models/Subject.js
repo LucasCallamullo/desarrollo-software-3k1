@@ -80,6 +80,18 @@ const Subject = sequelize.define('Subject', {
     },
 
     /**
+     * Indicates if the subject is an elective course
+     * true: elective subject (optional)
+     * false: mandatory subject (default)
+     * Column: degree_id (converted by underscored: true)
+     */
+    isElective: {
+        type: DataTypes.BOOLEAN,
+        allowNull: false,
+        defaultValue: false,  // default is not elective
+    },
+
+    /**
      * Degree ID - Foreign key referencing Degree
      * Required. Every subject belongs to a degree (e.g., Systems Engineering)
      * Column: degree_id (converted by underscored: true)

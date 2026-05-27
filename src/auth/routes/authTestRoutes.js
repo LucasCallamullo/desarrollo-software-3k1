@@ -1,6 +1,6 @@
 // modules/auth/test.routes.js (simplificado pero mejorado)
 const express = require('express');
-const { authenticateToken, authorizeRole } = require('./auth.middleware');
+const { authenticateToken, authorizeRole } = require('../middlewares/authMiddleware.js');
 const jwt = require('jsonwebtoken');
 
 const router = express.Router();

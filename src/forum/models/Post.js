@@ -98,52 +98,23 @@ const Post = sequelize.define('Post', {
     underscored: true           // Converts camelCase to snake_case
 });
 
-/**
- * ================================================================
- * MODEL ASSOCIATIONS
- * ================================================================
- * 
- * Defines all relationships for the Post model.
- * 
- * This follows the "associate pattern" to avoid circular dependencies:
- *   1. All models are loaded first (without associations)
- *   2. Then this function is called for each model
- *   3. Associations are registered with the loaded models
- * 
- * The associate function is called automatically by the global model registry.
- * 
- * @param {Object} models - All registered models from the global registry
- *        (index.js in the models folder)
- * 
- * @example
- * // In models/index.js:
- * Object.keys(models).forEach(modelName => {
- *     if (models[modelName].associate) {
- *         models[modelName].associate(models);
- *     }
- * });
- * 
- * ================================================================
- */
 
+/**
+ * Define associations for the User model.
+ * 
+ * This function is called automatically by the global model registry.
+ * It receives all loaded models as a parameter to wire up relationships
+ * without creating circular dependencies.
+ * 
+ * @param {Object} models - All registered models from src/models/index.js
+ */
 Post.associate = (models) => {
     
-    // ============================================================
-    // RELATION 1: Post → User (author)
-    // ============================================================
     /**
      * Post belongs to a User (author)
      * Type: Many-to-One (N:1)
      * 
      * The foreign key 'authorId' references 'id' in the User model
-     * 
-     * Adds to Post instance:
-     *   - post.getAuthor()        → returns the User who wrote the post
-     *   - post.setAuthor()        → sets the author
-     *   - post.createAuthor()     → creates and associates a new author
-     * 
-     * Query usage:
-     *   await Post.findByPk(1, { include: ['author'] })
      * 
      * Database:
      *   - posts.author_id REFERENCES users.id
@@ -159,22 +130,11 @@ Post.associate = (models) => {
         onUpdate: 'CASCADE'
     });
 
-    // ============================================================
-    // RELATION 2: Post → Subject (optional)
-    // ============================================================
     /**
      * Post belongs to a Subject (optional)
      * Type: Many-to-One (N:1) - optional foreign key
      * 
      * The foreign key 'subjectId' can be NULL (post may not be subject-specific)
-     * 
-     * Adds to Post instance:
-     *   - post.getSubject()       → returns the Subject (or null)
-     *   - post.setSubject()       → sets the subject (or null)
-     *   - post.createSubject()    → creates and associates a new subject
-     * 
-     * Query usage:
-     *   await Post.findAll({ include: ['subject'] })
      * 
      * Database:
      *   - posts.subject_id REFERENCES subjects.id (nullable)
@@ -190,22 +150,11 @@ Post.associate = (models) => {
         onUpdate: 'CASCADE'
     });
 
-    // ============================================================
-    // RELATION 3: Post → Commission (optional)
-    // ============================================================
     /**
      * Post belongs to a Commission (optional)
      * Type: Many-to-One (N:1) - optional foreign key
      * 
      * The foreign key 'commissionId' can be NULL (post may not be commission-specific)
-     * 
-     * Adds to Post instance:
-     *   - post.getCommission()    → returns the Commission (or null)
-     *   - post.setCommission()    → sets the commission (or null)
-     *   - post.createCommission() → creates and associates a new commission
-     * 
-     * Query usage:
-     *   await Post.findAll({ include: ['commission'] })
      * 
      * Database:
      *   - posts.commission_id REFERENCES commissions.id (nullable)
@@ -221,24 +170,11 @@ Post.associate = (models) => {
         onUpdate: 'CASCADE'
     });
 
-    // ============================================================
-    // RELATION 4: Post → Comments
-    // ============================================================
     /**
      * Post has many Comments
      * Type: One-to-Many (1:N)
      * 
      * The foreign key 'postId' in the Comment model references this Post
-     * 
-     * Adds to Post instance:
-     *   - post.getComments()      → returns all comments for this post
-     *   - post.countComments()    → returns the number of comments
-     *   - post.addComment()       → adds a comment
-     *   - post.removeComment()    → removes a comment
-     *   - post.createComment()    → creates and adds a new comment
-     * 
-     * Query usage:
-     *   await Post.findByPk(1, { include: ['comments'] })
      * 
      * Database:
      *   - comments.post_id REFERENCES posts.id
@@ -246,9 +182,6 @@ Post.associate = (models) => {
      *   - ON UPDATE: CASCADE (if post.id changes, update post_id)
      * 
      * Model reference: models.Comment (defined in ../Comment.js)
-     * 
-     * Note: The reverse association is defined in Comment.associate():
-     *   Comment.belongsTo(models.Post, { foreignKey: 'postId', as: 'post' })
      */
     Post.hasMany(models.Comment, {
         foreignKey: 'postId',
