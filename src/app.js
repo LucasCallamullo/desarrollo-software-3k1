@@ -1,95 +1,163 @@
-
-const cors = require('cors'); // 1. Importar cors
-const express = require('express');
-
 /**
- * Import sequelize from the global model registry, not directly from config/db.js
+ * ================================================================
+ * SERVER ENTRY POINT
+ * ================================================================
  * 
- * WHY THIS CHANGE?
- * Previously, we might have done:
- *   const sequelize = require('./config/db.js');
+ * This is the main application file that initializes and starts
+ * the Express server for the University Forum API.
  * 
- * Now we do:
- *   const { sequelize } = require('./models');  --> this import execute 'index.js' by default
- * 
- * REASONS:
- * 1. SINGLE SOURCE OF TRUTH
- *    - The models/index.js file is the central registry that initializes EVERYTHING
- *    - It imports all models, establishes associations, AND re-exports sequelize
- *    - This ensures sequelize is the same instance used by all models
- */
-const { sequelize } = require('./models');
+ * It handles:
+ * - Database connection and synchronization
+ * - Middleware setup (CORS, logging, JSON parsing, cookies)
+ * - Route registration
+ * - Error handling
+ * - Server startup
+ * ================================================================ */
+
+// ================================================================
+// DEPENDENCIES
+// ================================================================
+
+const cors = require('cors');           // Enables Cross-Origin Resource Sharing
+const express = require('express');     // Web framework
+const cookieParser = require('cookie-parser'); // Parses cookies from requests
 
 
-// Importamos los modelos para que Sequelize los reconozca antes de sincronizar
-const seed = require('.core/seed/seed.js');
+require('dotenv').config();             // Loads environment variables from .env file
 
-// Importamos las rutas para usuarios y posts
-const userRoutes = require('./users/routes/userRoutes.js'); 
-const postRoutes = require('./posts/routes/postRoutes');
+// Import Sequelize instance from the central model registry
+// (Not from config/db.js - this ensures all models are properly registered)
+const { sequelize } = require('./core/models/index.js');
 
+// Core middleware imports
+const logger = require('./core/middlewares/logger');          // HTTP request logging
+const errorHandler = require('./core/middlewares/errorHandler.js'); // Global error handler
+
+// Import seed function to populate database with initial/fake data
+const seed = require('./core/seed/seed.js');
+
+// Route imports by module/feature
+const authRoutes = require('./auth/routes/authLoginRoutes.js'); // Authentication (login/logout/refresh)
+const authTestRoutes = require('./auth/routes/authTestRoutes.js'); // Test endpoints (auth debugging)
+
+const userRoutes = require('./users/routes/userRoutes.js');   // User CRUD operations
+
+const postRoutes = require('./forum/routes/postRoutes.js');   // Forum posts
+
+// ================================================================
+// INITIALIZE EXPRESS APP
+// ================================================================
 const app = express();
-// http://localhost:3000
-const PORT = 3000;
 
-
-// 2. Configurar CORS (El '*' es el default si no pasas opciones)
-// Esto permite que CUALQUIER origen acceda a tu API
+// ================================================================
+// CORS CONFIGURATION
+// ================================================================
+// Allows any origin to access the API (default behavior)
+// In production, you should restrict this to specific domains:
+// app.use(cors({ origin: 'https://myfrontend.com' }));
 app.use(cors());
 
-// Middleware para que Express entienda JSON (muy importante para POST/PUT)
-app.use(express.json());
+// ================================================================
+// GLOBAL MIDDLEWARES (applied to every request)
+// ================================================================
+app.use(logger);              // Logs request method, URL, status, and response time
+app.use(express.json());      // Parses incoming JSON request bodies into req.body
+app.use(cookieParser());      // Parses cookies from requests into req.cookies
 
-// Vinculamos las rutas. 
-// Todos los endpoints en userRoutes tendrán el prefijo /users
-app.use('/api/v1/users', userRoutes);
-app.use('/api/v1/posts', postRoutes);
+// ================================================================
+// ROUTE REGISTRATION
+// ================================================================
+// Each route module is mounted at its base path defined inside the module
+// Examples:
+//   - authRoutes may handle /api/v1/auth/login
+//   - postRoutes may handle /api/v1/posts
+
+app.use(authRoutes);          // Authentication endpoints (login, logout, refresh)
+app.use(authTestRoutes);      // Test endpoints (auto-disabled in production by the module)
+
+// user app
+app.use(userRoutes);
+
+app.use(postRoutes);          // Forum post endpoints
+
+
+// ================================================================
+// ERROR HANDLING (MUST BE LAST middleware)
+// ================================================================
+// Catches any errors passed via next(error) from previous middleware/routes
+// Sends consistent error response format to the client
+app.use(errorHandler);
+
+
+// ================================================================
+// DATABASE CONNECTION & SERVER START
+// ================================================================
+
+/**
+ * Initializes the database connection and starts the Express server.
+ * 
+ * Steps:
+ * 1. Authenticate connection to the database
+ * 2. Synchronize models with database schema
+ * 3. Run seeders to populate initial/test data
+ * 4. Start listening for HTTP requests
+ * 
+ * @async
+ * @function startServer
+ * @returns {Promise<void>}
+ */
 
 async function startServer() {
     try {
-        // Conectamos y sincronizamos DB
+        // Step 1: Verify database connection
+        // Throws an error if connection fails
         await sequelize.authenticate();
-        /**
-         * --- ESTRATEGIAS DE SINCRONIZACIÓN DE BASE DE DATOS ---
-         */
+        console.log('-- Database connection established');
 
-        // Opción 1: Solo crea si no existe (Producción)
-        // await sequelize.sync(); 
+        // Step 2: Synchronize database schema with Sequelize models
+        // Options for sync strategies (see comments below):
+        
+        // Option 1: Create tables if they don't exist (SAFE for production)
+        // await sequelize.sync();
+        
+        // Option 2: Force recreation - DROPS all tables first! (DEVELOPMENT ONLY)
+        // WARNING: This deletes ALL existing data!
+        await sequelize.sync({ force: true });
+        
+        // Option 3: Smart alter - adds new columns without deleting data (CURRENT)
+        // Good for active development where you're adding fields to models
+        // await sequelize.sync({ alter: true });
+        
+        console.log('-- Database schema synchronized');
 
-        // Opción 2: Recreación total (Desarrollo inicial / Reset)
-        // ¡CUIDADO! Ejecuta "DROP TABLE", borrando todos los registros antes de crear.
-        await sequelize.sync({ force: true }); 
+        // Step 3: Populate database with initial/fake data
+        // Only inserts data if tables are empty (checks internally)
+        await seed.runSeed();
+        console.log('🌱 Seed data loaded');
 
-        // Opción 3: Alteración inteligente (Desarrollo activo)
-        // Compara el modelo con la DB y añade columnas nuevas sin borrar los datos existentes.
-        // await sequelize.sync({ alter: true }); 
-
-        console.log('✅ DB Conectada y Sincronizada');
-
-        // para crear datos fake
-        seed.runSeed();
-
-        // Iniciamos el servidor
+        // Step 4: Start the HTTP server
+        const PORT = process.env.PORT || 3000;
         app.listen(PORT, () => {
-            console.log(`🚀 Servidor corriendo en http://localhost:${PORT}`);
+            console.log(`Server running at http://localhost:${PORT}`);
+            console.log(`Environment: ${process.env.NODE_ENV || 'development'}`);
         });
+        
     } catch (error) {
-        console.error('❌ Error al iniciar:', error);
+        // Log any fatal errors that prevent the server from starting
+        console.error('❌ Failed to start server:', error.message);
+        console.error(error);
+        // Exit process with failure code (optional)
+        // process.exit(1);
     }
 }
 
+// ================================================================
+// START THE APPLICATION
+// ================================================================
+
 startServer();
 
-
-/* 
-// 3. Prueba rápida: Crear un usuario y un post
-const nuevoUsuario = await User.create({
-    firstName: "Lucas",
-    lastName: "Callamullo",
-    email: "lucas@ejemplo.com"
-});
-
-await Post.create({
-    text: "Mi primer post en Sequelize",
-    authorId: nuevoUsuario.id // Usamos el ID del usuario recién creado
-}); **/
+// ================================================================
+// EXPORTS (for testing purposes)
+// ================================================================
+module.exports = { app };
