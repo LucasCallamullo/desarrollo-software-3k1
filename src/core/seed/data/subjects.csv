@@ -1,25 +1,424 @@
-id,nombre,nivel,regimen,carga_horaria,carrera
-1,Análisis Matemático I,1,Anual,5,Ciencias Básicas
-2,Álgebra y Geometría Analítica,1,Anual,5,Ciencias Básicas
-3,Física I,1,Anual,5,Ciencias Básicas
-4,Inglés I,1,Anual,2,Ciencias Básicas
-5,Lógica y Estructuras Discretas,1,Cuatrimestral,3,Ingeniería en Sistemas
-6,Algoritmo y Estructura de Datos,1,Anual,5,Ingeniería en Sistemas
-7,Arquitectura de Computadoras,1,Cuatrimestral,4,Ingeniería en Sistemas
-8,Sistemas y Proceso de Negocios,1,Cuatrimestral,3,Ingeniería en Sistemas
-11,Ingeniería y Sociedad,2,Cuatrimestral,2,Ciencias Básicas
-9,Análisis Matemático II,2,Anual,5,Ciencias Básicas
-10,Física II,2,Anual,5,Ciencias Básicas
-12,Inglés II,2,Anual,2,Ciencias Básicas
-13,Sintaxis y Semántica de los Lenguajes,2,Cuatrimestral,4,Ingeniería en Sistemas
-14,Paradigmas de Programación,2,Cuatrimestral,4,Ingeniería en Sistemas
-15,Sistemas Operativos,2,Anual,4,Ingeniería en Sistemas
-16,Análisis de Sistemas de Información,2,Anual,6,Ingeniería en Sistemas
-17,Probabilidad y Estadística,2,Cuatrimestral,3,Ciencias Básicas
-18,Economía,3,Cuatrimestral,3,Ciencias Básicas
-19,Base de Datos,3,Cuatrimestral,4,Ingeniería en Sistemas
-20,Desarrollo de Software,3,Cuatrimestral,4,Ingeniería en Sistemas
-21,Comunicación de Datos,3,Anual,4,Ingeniería en Sistemas
-22,Análisis Numérico,3,Cuatrimestral,3,Ingeniería en Sistemas
-23,Diseño de Sistemas de Información,3,Anual,6,Ingeniería en Sistemas
-24,Seminario Integrador (Analista),3,Cuatrimestral,4,Ingeniería en Sistemas
+id;nombre;nivel;regimen;carga_horaria;carrera;es_electiva
+1;Análisis Matemático I;1;Anual;5;Ciencias Básicas;no
+2;Álgebra y Geometría Analítica;1;Anual;5;Ciencias Básicas;no
+3;Física I;1;Anual;5;Ciencias Básicas;no
+4;Inglés I;1;Anual;2;Ciencias Básicas;no
+5;Lógica y Estructuras Discretas;1;Cuatrimestral;3;Ingeniería en Sistemas;no
+6;Algoritmo y Estructura de Datos;1;Anual;5;Ingeniería en Sistemas;no
+7;Arquitectura de Computadoras;1;Cuatrimestral;4;Ingeniería en Sistemas;no
+8;Sistemas y Proceso de Negocios;1;Cuatrimestral;3;Ingeniería en Sistemas;no
+9;Análisis Matemático II;2;Anual;5;Ciencias Básicas;no
+10;Física II;2;Anual;5;Ciencias Básicas;no
+11;Ingeniería y Sociedad;2;Cuatrimestral;2;Ciencias Básicas;no
+12;Inglés II;2;Anual;2;Ciencias Básicas;no
+13;Sintaxis y Semántica de los Lenguajes;2;Cuatrimestral;4;Ingeniería en Sistemas;no
+14;Paradigmas de Programación;2;Cuatrimestral;4;Ingeniería en Sistemas;no
+15;Sistemas Operativos;2;Anual;4;Ingeniería en Sistemas;no
+16;Análisis de Sistemas de Información;2;Anual;6;Ingeniería en Sistemas;no
+17;Probabilidad y Estadística;2;Cuatrimestral;3;Ciencias Básicas;no
+18;Economía;3;Cuatrimestral;3;Ciencias Básicas;no
+19;Base de Datos;3;Cuatrimestral;4;Ingeniería en Sistemas;no
+20;Desarrollo de Software;3;Cuatrimestral;4;Ingeniería en Sistemas;no
+21;Comunicación de Datos;3;Anual;4;Ingeniería en Sistemas;no
+22;Análisis Numérico;3;Cuatrimestral;3;Ingeniería en Sistemas;no
+23;Diseño de Sistemas de Información;3;Anual;6;Ingeniería en Sistemas;no
+24;Seminario Integrador (Analista);3;Cuatrimestral;4;Ingeniería en Sistemas;no
+25;Legislación;4;Cuatrimestral;2;Ingeniería en Sistemas;no
+26;Ingeniería y Calidad de Software;4;Cuatrimestral;3;Ingeniería en Sistemas;no
+27;Redes de Datos;4;Anual;4;Ingeniería en Sistemas;no
+28;Investigación Operativa;4;Anual;4;Ingeniería en Sistemas;no
+29;Simulación;4;Cuatrimestral;3;Ingeniería en Sistemas;no
+30;Tecnologías Para la Automatización;4;Cuatrimestral;3;Ingeniería en Sistemas;no
+31;Administración de Sistemas de Información;5;Anual;6;Ingeniería en Sistemas;no
+32;Inteligencia Artificial;5;Cuatrimestral;3;Ingeniería en Sistemas;no
+33;Ciencia de Datos;5;Cuatrimestral;3;Ingeniería en Sistemas;no
+34;Sistemas de Gestión;5;Cuatrimestral;3;Ingeniería en Sistemas;no
+35;Gestión Gerencial;5;Cuatrimestral;3;Ingeniería en Sistemas;no
+36;Seguridad en los Sistemas de Información;5;Cuatrimestral;3;Ingeniería en Sistemas;no
+37;Proyecto Final;5;Anual;6;Ingeniería en Sistemas;no
+38;Backend de Aplicaciones;3;Cuatrimestral;4;Ingeniería en Sistemas;si
+39;Green Software;4;Cuatrimestral;3;Ingeniería en Sistemas;si
+40;Gestión Industrial de la Producción;4;Cuatrimestral;3;Ingeniería en Sistemas;si
+41;Gestión de la Mejora de los Procesos;4;Cuatrimestral;3;Ingeniería en Sistemas;si
+42;Desarrollo y Operaciones devOPS;4;Cuatrimestral;3;Ingeniería en Sistemas;si
+43;Desarrollo de Aplicaciones Con Objetos;3;Cuatrimestral;3;Ingeniería en Sistemas;si
+44;Comunicación Multimedial en el Desarrollo de Sistemas de Información;4;Cuatrimestral;3;Ingeniería en Sistemas;si
+45;Arquitectura de Software;4;Cuatrimestral;3;Ingeniería en Sistemas;si
+46;Desarrollo de Tecnología Blockchain;5;Cuatrimestral;3;Ingeniería en Sistemas;si
+47;Creatividad e Innovación en Ingeniería;5;Cuatrimestral;3;Ingeniería en Sistemas;si
+48;Auditorías de Si/Ti;5;Cuatrimestral;3;Ingeniería en Sistemas;si
+49;Gerenciamiento Estratégico;5;Cuatrimestral;3;Ingeniería en Sistemas;si
+50;Consultoría en Negocios Digitales;5;Cuatrimestral;3;Ingeniería en Sistemas;si
+51;Emprendimientos Tecnológicos;5;Cuatrimestral;3;Ingeniería en Sistemas;si
+52;Decisiones en Escenarios Complejos;5;Cuatrimestral;3;Ingeniería en Sistemas;si
+53;Testing de Software;5;Cuatrimestral;3;Ingeniería en Sistemas;si
+54;Seguridad en el Desarrollo de Software;5;Cuatrimestral;3;Ingeniería en Sistemas;si
+55;Integración de Aplicaciones en Entorno Web;5;Cuatrimestral;3;Ingeniería en Sistemas;si
+56;Ingeniería de Software de Fuentes Abiertas/Libres;5;Cuatrimestral;3;Ingeniería en Sistemas;si
+1;Análisis Matemático I;1;Anual;5;Ciencias Básicas;no
+2;Química General;1;Anual;5;Ciencias Básicas;no
+3;Sistemas de Representación;1;Anual;3;Ciencias Básicas;no
+4;Informática I;1;Anual;3;Ingeniería Industrial;no
+5;Pensamiento Sistémico;1;Anual;3;Ingeniería Industrial;no
+6;Física I;1;Anual;5;Ciencias Básicas;no
+7;Álgebra y Geometría Analítica;1;Anual;5;Ciencias Básicas;no
+8;Ingeniería y Sociedad;1;Anual;2;Ciencias Básicas;no
+9;Análisis Matemático II;2;Anual;5;Ciencias Básicas;no
+10;Administración General;2;Anual;4;Ingeniería Industrial;no
+11;Probabilidad y Estadística;2;Anual;3;Ciencias Básicas;no
+12;Ciencias de los Materiales;2;Anual;4;Ingeniería Industrial;no
+13;Física II;2;Anual;5;Ciencias Básicas;no
+14;Economía General;2;Anual;3;Ciencias Básicas;no
+15;Informática II;2;Anual;3;Ingeniería Industrial;no
+16;Inglés I;2;Anual;2;Ciencias Básicas;no
+17;Costos y Presupuestos;3;Anual;4;Ingeniería Industrial;no
+18;Estudio del Trabajo;3;Anual;4;Ingeniería Industrial;no
+19;Comercialización;3;Anual;3;Ingeniería Industrial;no
+20;Termodinámica y Máquinas Térmicas;3;Anual;4;Ingeniería Industrial;no
+21;Estática y Resistencia de los Materiales;3;Anual;4;Ingeniería Industrial;no
+22;Mecánica de los Fluidos;3;Anual;3;Ingeniería Industrial;no
+23;Economía de la Empresa;3;Anual;3;Ingeniería Industrial;no
+24;Electrotecnia y Máquinas Eléctricas;3;Anual;5;Ingeniería Industrial;no
+25;Análisis Numérico y Cálculo Avanzado;4;Anual;3;Ingeniería Industrial;no
+26;Seguridad, Higiene e Ingeniería Ambiental;4;Anual;3;Ingeniería Industrial;no
+27;Investigación Operativa;4;Anual;4;Ingeniería Industrial;no
+28;Procesos Industriales;4;Anual;4;Ingeniería Industrial;no
+29;Mecánica y Mecanismos;4;Anual;3;Ingeniería Industrial;no
+30;Evaluación de Proyectos;4;Anual;4;Ingeniería Industrial;no
+31;Planificación y Control de la Producción;4;Anual;4;Ingeniería Industrial;no
+32;Diseño de Producto;4;Anual;2;Ingeniería Industrial;no
+33;Inglés II;5;Anual;2;Ciencias Básicas;no
+34;Instalaciones Industriales;5;Anual;3;Ingeniería Industrial;no
+35;Legislación;5;Anual;2;Ciencias Básicas;no
+36;Mantenimiento;5;Anual;3;Ingeniería Industrial;no
+37;Manejo de Materiales y Distribución de Planta;5;Anual;3;Ingeniería Industrial;no
+38;Comercio Exterior;6;Anual;3;Ingeniería Industrial;no
+39;Relaciones Industriales;6;Anual;3;Ingeniería Industrial;no
+40;Ingeniería en Calidad;6;Anual;3;Ingeniería Industrial;no
+41;Control de Gestión;6;Anual;3;Ingeniería Industrial;no
+42;Proyecto Final;6;Anual;6;Ingeniería Industrial;no
+43;Gestión Ambiental;4;Cuatrimestral;2;Ingeniería Industrial;si
+44;Gestión de Proyectos;4;Cuatrimestral;2;Ingeniería Industrial;si
+45;Gestión Emprendedora;4;Cuatrimestral;2;Ingeniería Industrial;si
+46;Logística;4;Cuatrimestral;2;Ingeniería Industrial;si
+47;Política Económica;4;Cuatrimestral;2;Ingeniería Industrial;si
+48;Energías Renovables;4;Cuatrimestral;2;Ingeniería Industrial;si
+49;Gestión del Conocimiento, la Innovación y Economía Crítica;4;Cuatrimestral;2;Ingeniería Industrial;si
+50;Coaching de Formadores;4;Cuatrimestral;2;Ingeniería Industrial;si
+51;Simulación;4;Cuatrimestral;2;Ingeniería Industrial;si
+52;Análisis de Datos I;4;Cuatrimestral;3;Ingeniería Industrial;si
+53;Sustentabilidad y Nuevas Economías;4;Cuatrimestral;2;Ingeniería Industrial;si
+54;CNH Cátedra In Situ;4;Cuatrimestral;2;Ingeniería Industrial;si
+1;Análisis Matemático I;1;Anual;5;Ciencias Básicas;no
+2;Química General;1;Anual;5;Ciencias Básicas;no
+3;Álgebra y Geometría Analítica;1;Anual;5;Ciencias Básicas;no
+4;Física I;1;Anual;5;Ciencias Básicas;no
+5;Ingeniería y Sociedad;1;Anual;2;Ciencias Básicas;no
+6;Ingeniería Mecánica I;1;Anual;2;Ingeniería Mecánica;no
+7;Sistemas de Representación;1;Anual;3;Ciencias Básicas;no
+8;Fundamentos de Informática;1;Anual;2;Ingeniería Mecánica;no
+9;Materiales No Metálicos;2;Anual;3;Ingeniería Mecánica;no
+10;Estabilidad I;2;Anual;4;Ingeniería Mecánica;no
+11;Materiales Metálicos;2;Anual;5;Ingeniería Mecánica;no
+12;Análisis Matemático II;2;Anual;5;Ciencias Básicas;no
+13;Física II;2;Anual;5;Ciencias Básicas;no
+14;Ingeniería Ambiental y Seguridad Industrial;2;Anual;3;Ingeniería Mecánica;no
+15;Ingeniería Mecánica II;2;Anual;2;Ingeniería Mecánica;no
+16;Inglés I;2;Anual;2;Ciencias Básicas;no
+17;Termodinámica;3;Anual;4;Ingeniería Mecánica;no
+18;Mecánica Racional;3;Anual;4;Ingeniería Mecánica;no
+19;Estabilidad II;3;Anual;4;Ingeniería Mecánica;no
+20;Mediciones y Ensayos;3;Anual;4;Ingeniería Mecánica;no
+21;Diseño Mecánico;3;Anual;3;Ingeniería Mecánica;no
+22;Cálculo Avanzado;3;Anual;3;Ingeniería Mecánica;no
+23;Ingeniería Mecánica III;3;Anual;2;Ingeniería Mecánica;no
+24;Probabilidad y Estadística;3;Anual;3;Ciencias Básicas;no
+25;Inglés II;3;Anual;2;Ciencias Básicas;no
+26;Economía;4;Anual;3;Ciencias Básicas;no
+27;Elementos de Máquinas;4;Anual;4;Ingeniería Mecánica;no
+28;Tecnología del Calor;4;Anual;3;Ingeniería Mecánica;no
+29;Metrología e Ingeniería de Calidad;4;Anual;3;Ingeniería Mecánica;no
+30;Mecánica de los Fluidos;4;Anual;3;Ingeniería Mecánica;no
+31;Electrotecnia y Máquinas Eléctricas;4;Anual;4;Ingeniería Mecánica;no
+32;Electrónica y Sistemas de Control;4;Anual;5;Ingeniería Mecánica;no
+33;Estabilidad III;4;Anual;3;Ingeniería Mecánica;no
+34;Tecnología de Fabricación;5;Anual;4;Ingeniería Mecánica;no
+35;Máquinas Alternativas y Turbomáquinas;5;Anual;4;Ingeniería Mecánica;no
+36;Instalaciones Industriales;5;Anual;4;Ingeniería Mecánica;no
+37;Organización Industrial;5;Anual;3;Ingeniería Mecánica;no
+38;Legislación;5;Anual;2;Ciencias Básicas;no
+39;Mantenimiento;5;Anual;2;Ingeniería Mecánica;no
+40;Proyecto Final;5;Anual;4;Ingeniería Mecánica;no
+41;Introducción a la Programación Computacional en Ingeniería;2;Cuatrimestral;2;Ingeniería Mecánica;si
+42;Tecnología Mecánica;2;Cuatrimestral;2;Ingeniería Mecánica;si
+43;Sistemas de Representación Avanzada;2;Cuatrimestral;2;Ingeniería Mecánica;si
+44;Fundamentos de Optimización de Ingeniería;5;Cuatrimestral;2;Ingeniería Mecánica;si
+45;Automotores I;5;Cuatrimestral;2;Ingeniería Mecánica;si
+46;Diseño de Instalaciones Térmicas;5;Cuatrimestral;2;Ingeniería Mecánica;si
+47;Introducción al Método de Elementos Finitos;5;Cuatrimestral;2;Ingeniería Mecánica;si
+48;Gestión de Proyectos;5;Cuatrimestral;2;Ingeniería Mecánica;si
+49;Gestión Ambiental;5;Cuatrimestral;2;Ingeniería Mecánica;si
+50;Gestión Emprendedora;5;Cuatrimestral;2;Ingeniería Mecánica;si
+51;Logística;5;Cuatrimestral;2;Ingeniería Mecánica;si
+52;Análisis Estructural Estático Mediante el Método de Elementos Finitos;5;Cuatrimestral;2;Ingeniería Mecánica;si
+53;Introducción a la Programación y Operación de Máquinas CNC;5;Cuatrimestral;2;Ingeniería Mecánica;si
+54;Sistemas Neumáticos e Hidráulicos;5;Cuatrimestral;2;Ingeniería Mecánica;si
+55;Automotores II;5;Cuatrimestral;2;Ingeniería Mecánica;si
+56;Innovación Abierta Como Herramienta de Desarrollo Profesional;5;Cuatrimestral;2;Ingeniería Mecánica;si
+57;Introducción a la Investigación Científica;5;Cuatrimestral;2;Ingeniería Mecánica;si
+1;Introducción a la Ingeniería Química (Int. I);1;Cuatrimestral;6;Ingeniería Química;no
+2;Ingeniería y Sociedad;1;Cuatrimestral;4;Ciencias Básicas;no
+3;Álgebra y Geometría Analítica;1;Cuatrimestral;10;Ciencias Básicas;no
+4;Análisis Matemático I;1;Cuatrimestral;10;Ciencias Básicas;no
+5;Química;1;Cuatrimestral;10;Ciencias Básicas;no
+6;Sistemas de Representación;1;Cuatrimestral;4;Ciencias Básicas;no
+7;Análisis Matemático II;1;Cuatrimestral;10;Ciencias Básicas;no
+8;Inglés I;1;Cuatrimestral;4;Ciencias Básicas;no
+9;Física I;2;Cuatrimestral;10;Ciencias Básicas;no
+10;Fundamentos de Informática;2;Cuatrimestral;4;Ingeniería Química;no
+11;Probabilidad y Estadística;2;Cuatrimestral;6;Ciencias Básicas;no
+12;Química Inorgánica;2;Cuatrimestral;8;Ciencias Básicas;no
+13;Inglés II;2;Cuatrimestral;4;Ciencias Básicas;no
+14;Introducción a Equipos y Procesos (Int. II);2;Cuatrimestral;6;Ingeniería Química;no
+15;Física II;2;Cuatrimestral;10;Ciencias Básicas;no
+16;Química Orgánica;2;Cuatrimestral;10;Ciencias Básicas;no
+17;Matemática Superior Aplicada;2;Cuatrimestral;6;Ciencias Básicas;no
+18;Termodinámica;3;Cuatrimestral;6;Ingeniería Química;no
+19;Ciencia de los Materiales;3;Cuatrimestral;4;Ingeniería Química;no
+20;Química Analítica;3;Cuatrimestral;6;Ingeniería Química;no
+21;Microbiología y Química Biológica;3;Cuatrimestral;6;Ingeniería Química;no
+22;Economía;3;Cuatrimestral;6;Ciencias Básicas;no
+23;Balances de Masa y Energía (Int. III);3;Cuatrimestral;6;Ingeniería Química;no
+24;Legislación;3;Cuatrimestral;4;Ciencias Básicas;no
+25;Fisicoquímica;3;Cuatrimestral;6;Ingeniería Química;no
+26;Fenómenos de Transporte;4;Cuatrimestral;10;Ingeniería Química;no
+27;Química Aplicada;4;Cuatrimestral;6;Ingeniería Química;no
+28;Operaciones Unitarias I;4;Cuatrimestral;10;Ingeniería Química;no
+29;Tecnología de la Energía Térmica;4;Cuatrimestral;10;Ingeniería Química;no
+30;Ingeniería de las Reacciones Químicas;4;Cuatrimestral;10;Ingeniería Química;no
+31;Diseño, Simulación, Optimización y Seguridad de Procesos (Int. IV);4;Cuatrimestral;8;Ingeniería Química;no
+32;Operaciones Unitarias II;4;Cuatrimestral;10;Ingeniería Química;no
+33;Higiene y Seguridad de Procesos;4;Cuatrimestral;4;Ingeniería Química;no
+34;Organización Industrial;4;Cuatrimestral;6;Ingeniería Química;no
+35;Procesos Biotecnológicos;4;Cuatrimestral;6;Ingeniería Química;no
+36;Proyecto Final (Int. V);5;Cuatrimestral;6;Ingeniería Química;no
+37;Control Automático de Procesos;5;Cuatrimestral;8;Ingeniería Química;no
+38;Mecánica Industrial;5;Cuatrimestral;4;Ingeniería Química;no
+39;Ingeniería Ambiental;5;Cuatrimestral;6;Ingeniería Química;no
+40;Calidad y Control Estadístico de Procesos;5;Cuatrimestral;4;Ingeniería Química;no
+41;Máquinas e Instalaciones Eléctricas;5;Cuatrimestral;4;Ingeniería Química;no
+42;Tecnología de los Alimentos;4;Cuatrimestral;2;Ingeniería Química;si
+43;Ingeniería de las Instalaciones;4;Cuatrimestral;4;Ingeniería Química;si
+44;Física de los Materiales;4;Cuatrimestral;4;Ingeniería Química;si
+45;Formaciones de Tutores Emprendedores;4;Cuatrimestral;4;Ingeniería Química;si
+46;Catalizadores y Procesos Catalíticos;4;Cuatrimestral;6;Ingeniería Química;si
+47;Introducción a la Investigación Científica;4;Cuatrimestral;4;Ingeniería Química;si
+48;Gestión de Potencial Humano;4;Cuatrimestral;4;Ingeniería Química;si
+49;Herramientas de Dirección y Gestión Empresarial;4;Cuatrimestral;4;Ingeniería Química;si
+50;Prácticas Profesionales Supervisadas;5;Cuatrimestral;50;Ingeniería Química;si
+51;Planificación, Desarrollo y Seguimiento de Proyectos Industriales;4;Cuatrimestral;4;Ingeniería Química;si
+1;Informática I;1;Anual;5;Ingeniería Electrónica;no
+2;Álgebra y Geometría Analítica;1;Cuatrimestral;10;Ciencias Básicas;no
+3;Análisis Matemático I;1;Cuatrimestral;10;Ciencias Básicas;no
+4;Ingeniería y Sociedad;1;Anual;2;Ciencias Básicas;no
+5;Análisis Matemático II;1;Cuatrimestral;10;Ciencias Básicas;no
+6;Física I;1;Cuatrimestral;10;Ciencias Básicas;no
+7;Diseño Asistido por Computadora;1;Anual;3;Ingeniería Electrónica;no
+8;Informática II;2;Anual;5;Ingeniería Electrónica;no
+9;Análisis de Señales y Sistemas;2;Anual;3;Ingeniería Electrónica;no
+10;Química General;2;Anual;5;Ciencias Básicas;no
+11;Física II;2;Cuatrimestral;10;Ciencias Básicas;no
+12;Probabilidad y Estadística;2;Anual;3;Ciencias Básicas;no
+13;Física Electrónica;2;Cuatrimestral;10;Ingeniería Electrónica;no
+14;Inglés I;2;Anual;2;Ciencias Básicas;no
+15;Teoría de los Circuitos I;3;Anual;6;Ingeniería Electrónica;no
+16;Técnicas Digitales I;3;Anual;4;Ingeniería Electrónica;no
+17;Dispositivos Electrónicos;3;Anual;5;Ingeniería Electrónica;no
+18;Legislación;3;Anual;4;Ciencias Básicas;no
+19;Electrónica Aplicada I;3;Anual;5;Ingeniería Electrónica;no
+20;Medios de Enlace;3;Anual;4;Ingeniería Electrónica;no
+21;Inglés II;3;Anual;2;Ciencias Básicas;no
+22;Técnicas Digitales II;4;Anual;5;Ingeniería Electrónica;no
+23;Medidas Electrónicas I;4;Anual;5;Ingeniería Electrónica;no
+24;Teoría de los Circuitos II;4;Anual;5;Ingeniería Electrónica;no
+25;Máquinas e Instalaciones Eléctricas;4;Anual;4;Ingeniería Electrónica;no
+26;Sistemas de Comunicaciones;4;Anual;4;Ingeniería Electrónica;no
+27;Electrónica Aplicada II;4;Anual;5;Ingeniería Electrónica;no
+28;Seguridad, Higiene y Medio Ambiente;4;Anual;2;Ingeniería Electrónica;no
+29;Técnicas Digitales III;5;Anual;5;Ingeniería Electrónica;no
+30;Medidas Electrónicas II;5;Anual;5;Ingeniería Electrónica;no
+31;Sistemas de Control;5;Anual;4;Ingeniería Electrónica;no
+32;Electrónica Aplicada III;5;Anual;5;Ingeniería Electrónica;no
+33;Tecnología Electrónica;5;Anual;5;Ingeniería Electrónica;no
+34;Electrónica de Potencia;5;Anual;4;Ingeniería Electrónica;no
+35;Organización Industrial;5;Anual;2;Ingeniería Electrónica;no
+36;Economía;6;Cuatrimestral;4;Ciencias Básicas;no
+37;Proyecto Final;6;Cuatrimestral;8;Ingeniería Electrónica;no
+38;Práctica Profesional Supervisada;6;Cuatrimestral;200;Ingeniería Electrónica;no
+39;Fundamentos de Robótica Móvil;5;Cuatrimestral;6;Ingeniería Electrónica;si
+40;Control de Procesos;5;Cuatrimestral;6;Ingeniería Electrónica;si
+41;Tecnologías para la Transmisión Digital de Video;5;Cuatrimestral;6;Ingeniería Electrónica;si
+42;Software en Tiempo Real;5;Cuatrimestral;6;Ingeniería Electrónica;si
+43;Técnicas Digitales IV;5;Cuatrimestral;6;Ingeniería Electrónica;si
+44;Introducción a las Fibras Ópticas. Arquitectura de Redes;5;Cuatrimestral;6;Ingeniería Electrónica;si
+45;Sistemas de Telecomunicaciones;5;Cuatrimestral;6;Ingeniería Electrónica;si
+46;Equipos de Microondas;5;Cuatrimestral;6;Ingeniería Electrónica;si
+47;Sistemas de Comunicaciones II;5;Cuatrimestral;6;Ingeniería Electrónica;si
+48;Sistemas de Comunicaciones III;5;Cuatrimestral;6;Ingeniería Electrónica;si
+49;Bioelectrónica;5;Cuatrimestral;6;Ingeniería Electrónica;si
+50;Fundamentos de Acústica y Electroacústica;5;Cuatrimestral;6;Ingeniería Electrónica;si
+51;Visión por Computadora;5;Cuatrimestral;6;Ingeniería Electrónica;si
+1;Análisis Matemático I;1;Anual;5;Ciencias Básicas;no
+2;Álgebra y Geometría Analítica;1;Anual;5;Ciencias Básicas;no
+3;Física I;1;Anual;5;Ciencias Básicas;no
+4;Química General;1;Anual;5;Ciencias Básicas;no
+5;Ingeniería de los Procesos I;1;Anual;3;Ingeniería Metalúrgica;no
+6;Ingeniería y Sociedad;1;Anual;2;Ciencias Básicas;no
+7;Sistemas de Representación;1;Anual;3;Ciencias Básicas;no
+8;Fundamentos de Informática;1;Anual;2;Ingeniería Metalúrgica;no
+9;Inglés I;1;Anual;2;Ciencias Básicas;no
+10;Física II;2;Anual;5;Ciencias Básicas;no
+11;Ingeniería de los Procesos II;2;Anual;3;Ingeniería Metalúrgica;no
+12;Análisis Matemático II;2;Anual;5;Ciencias Básicas;no
+13;Termodinámica Metalúrgica;2;Anual;4;Ingeniería Metalúrgica;no
+14;Química Inorgánica y Orgánica;2;Anual;4;Ciencias Básicas;no
+15;Técnicas de Análisis;2;Cuatrimestral;3;Ingeniería Metalúrgica;no
+16;Mineralogía y Tratamiento de los Minerales;2;Cuatrimestral;3;Ingeniería Metalúrgica;no
+17;Probabilidad y Estadística;2;Anual;3;Ciencias Básicas;no
+18;Inglés II;2;Anual;2;Ciencias Básicas;no
+19;Higiene y Seguridad e Ingeniería Ambiental;3;Cuatrimestral;3;Ingeniería Metalúrgica;no
+20;Metalúrgica Física I;3;Anual;3;Ingeniería Metalúrgica;no
+21;Mecánica de los Fluidos;3;Cuatrimestral;3;Ingeniería Metalúrgica;no
+22;Estabilidad y Resistencia de los Materiales;3;Cuatrimestral;3;Ingeniería Metalúrgica;no
+23;Fisicoquímica Metalúrgica;3;Anual;4;Ingeniería Metalúrgica;no
+24;Instalaciones Térmicas Metalúrgicas;3;Cuatrimestral;3;Ingeniería Metalúrgica;no
+25;Ciencia de los Materiales;3;Cuatrimestral;4;Ingeniería Metalúrgica;no
+26;Ensayo de Materiales;3;Cuatrimestral;3;Ingeniería Metalúrgica;no
+27;Electrotecnia y Sistemas de Control en Plantas Industriales;3;Cuatrimestral;3;Ingeniería Metalúrgica;no
+28;Técnicas de Estudio Aplicada a Materiales;3;Anual;3;Ingeniería Metalúrgica;no
+29;Taller de Integración;3;Cuatrimestral;2;Ingeniería Metalúrgica;no
+30;Metalurgia Física II;4;Anual;4;Ingeniería Metalúrgica;no
+31;Metalurgia Extractiva de los No Ferrosos;4;Cuatrimestral;3;Ingeniería Metalúrgica;no
+32;Refractarios y Cerámicos;4;Cuatrimestral;3;Ingeniería Metalúrgica;no
+33;Degradación, Corrosión y Protección de Materiales;4;Cuatrimestral;3;Ingeniería Metalúrgica;no
+34;Pulvimetallurgia y Recubrimiento de Materiales;4;Cuatrimestral;3;Ingeniería Metalúrgica;no
+35;Metalografía y Tratamiento Térmico de los Ferrosos;4;Anual;4;Ingeniería Metalúrgica;no
+36;Gestión y Organización Empresarial;4;Cuatrimestral;3;Ingeniería Metalúrgica;no
+37;Cálculo y Modelización Numérica;4;Cuatrimestral;3;Ingeniería Metalúrgica;no
+38;Economía;4;Anual;6;Ciencias Básicas;no
+39;Legislación;4;Anual;2;Ciencias Básicas;no
+40;Soldadura;5;Cuatrimestral;3;Ingeniería Metalúrgica;no
+41;Fundición de los Metales Ferrosos y No Ferrosos;5;Cuatrimestral;3;Ingeniería Metalúrgica;no
+42;Metalografía y Tratamiento Térmico de los No Ferrosos;5;Cuatrimestral;3;Ingeniería Metalúrgica;no
+43;Procesos de Conformación Plástica;5;Anual;3;Ingeniería Metalúrgica;no
+44;Procesos de Reducción y Aceleración;5;Anual;3;Ingeniería Metalúrgica;no
+45;Modelización de los Procesos Metalúrgicos;5;Cuatrimestral;3;Ingeniería Metalúrgica;no
+46;Metalurgia de la Laminación y Productos Especiales;5;Cuatrimestral;3;Ingeniería Metalúrgica;no
+47;Reciclado y Economía Circular;5;Cuatrimestral;3;Ingeniería Metalúrgica;no
+48;Proyecto Final;5;Anual;4;Ingeniería Metalúrgica;no
+49;Avances en Metalurgia y Nuevos Materiales;4;Anual;4;Ingeniería Metalúrgica;si
+50;Ingeniería Gerencial;4;Cuatrimestral;4;Ingeniería Metalúrgica;si
+1;Análisis Matemático I;1;Anual;5;Ciencias Básicas;no
+2;Álgebra y Geometría Analítica;1;Anual;5;Ciencias Básicas;no
+3;Ingeniería y Sociedad;1;Anual;2;Ciencias Básicas;no
+4;Ingeniería Civil I;1;Cuatrimestral;3;Ingeniería Civil;no
+5;Sistemas de Representación;1;Cuatrimestral;3;Ciencias Básicas;no
+6;Química General;1;Anual;5;Ciencias Básicas;no
+7;Física I;1;Anual;5;Ciencias Básicas;no
+8;Fundamentos de Informática;1;Cuatrimestral;2;Ingeniería Civil;no
+9;Análisis Matemático II;2;Anual;5;Ciencias Básicas;no
+10;Estabilidad;2;Anual;5;Ingeniería Civil;no
+11;Ingeniería Civil II (E.I);2;Anual;3;Ingeniería Civil;no
+12;Tecnología de los Materiales;2;Anual;4;Ingeniería Civil;no
+13;Física II;2;Anual;5;Ciencias Básicas;no
+14;Probabilidad y Estadística;2;Anual;3;Ciencias Básicas;no
+15;Inglés I;2;Anual;2;Ciencias Básicas;no
+16;Resistencia de Materiales;3;Cuatrimestral;4;Ingeniería Civil;no
+17;Tecnología del Hormigón;3;Cuatrimestral;2;Ingeniería Civil;no
+18;Tecnología de la Construcción;3;Anual;6;Ingeniería Civil;no
+19;Geotopografía;3;Anual;4;Ingeniería Civil;no
+20;Hidráulica General y Aplicada;3;Anual;5;Ingeniería Civil;no
+21;Cálculo Avanzado;3;Cuatrimestral;2;Ingeniería Civil;no
+22;Instalaciones Eléctricas y Acústicas;3;Cuatrimestral;2;Ingeniería Civil;no
+23;Instalaciones Termomecánicas;3;Cuatrimestral;2;Ingeniería Civil;no
+24;Economía;3;Anual;3;Ciencias Básicas;no
+25;Inglés II;3;Anual;2;Ciencias Básicas;no
+26;Geotecnia;4;Cuatrimestral;5;Ingeniería Civil;no
+27;Instalaciones Sanitarias y de Gas;4;Anual;3;Ingeniería Civil;no
+28;Diseño Arquitectónico, Planeamiento y Urbanismo (E.I);4;Anual;5;Ingeniería Civil;no
+29;Análisis Estructural I;4;Cuatrimestral;5;Ingeniería Civil;no
+30;Estructuras de Hormigón;4;Cuatrimestral;5;Ingeniería Civil;no
+31;Hidrología y Obras Hidráulicas;4;Anual;4;Ingeniería Civil;no
+32;Ingeniería Legal;4;Cuatrimestral;3;Ingeniería Civil;no
+33;Construcciones Metálicas y de Madera;5;Cuatrimestral;4;Ingeniería Civil;no
+34;Cimentaciones;5;Cuatrimestral;3;Ingeniería Civil;no
+35;Ingeniería Sanitaria;5;Anual;3;Ingeniería Civil;no
+36;Organización y Conducción de Obras;5;Anual;5;Ingeniería Civil;no
+37;Vías de Comunicación I;5;Cuatrimestral;4;Ingeniería Civil;no
+38;Análisis Estructural II;5;Cuatrimestral;5;Ingeniería Civil;no
+39;Vías de Comunicación II;5;Cuatrimestral;4;Ingeniería Civil;no
+40;Gestión Ambiental y Desarrollo Sustentable;5;Cuatrimestral;6;Ingeniería Civil;no
+41;Proyecto Final (E.I);5;Cuatrimestral;4;Ingeniería Civil;no
+42;Prácticas Supervisadas;5;Cuatrimestral;150;Ingeniería Civil;no
+43;Análisis Estructural III;5;Cuatrimestral;6;Ingeniería Civil;si
+44;Dinámica Estructural;5;Cuatrimestral;6;Ingeniería Civil;si
+45;Diseño Arquitectónico y Planeamiento;5;Cuatrimestral;6;Ingeniería Civil;si
+46;Geotecnia Experimental;5;Cuatrimestral;6;Ingeniería Civil;si
+47;Hidrología Urbana;5;Cuatrimestral;6;Ingeniería Civil;si
+48;Línea de Rivera y Ordenamiento Territorial;5;Cuatrimestral;6;Ingeniería Civil;si
+49;Obras Fluviales y Marítimas;5;Cuatrimestral;6;Ingeniería Civil;si
+50;Obras Subterráneas;5;Cuatrimestral;6;Ingeniería Civil;si
+51;Vialidad Especial;5;Cuatrimestral;6;Ingeniería Civil;si
+52;Prefabricación;5;Cuatrimestral;4;Ingeniería Civil;si
+53;Puentes;5;Cuatrimestral;6;Ingeniería Civil;si
+54;Introducción a los Sistemas de Información Geográficos;5;Cuatrimestral;6;Ingeniería Civil;si
+55;Tránsito y Transporte;5;Cuatrimestral;6;Ingeniería Civil;si
+56;Uso del Recurso Hídrico;5;Cuatrimestral;6;Ingeniería Civil;si
+1;Análisis Matemático I;1;Anual;5;Ciencias Básicas;no
+2;Álgebra y Geometría Analítica;1;Anual;5;Ciencias Básicas;no
+3;Ingeniería y Sociedad;1;Anual;2;Ciencias Básicas;no
+4;Sistemas de Representación;1;Anual;3;Ciencias Básicas;no
+5;Física I;1;Anual;5;Ciencias Básicas;no
+6;Química General;1;Anual;5;Ciencias Básicas;no
+7;Integración Eléctrica I;1;Anual;3;Ingeniería Eléctrica;no
+8;Fundamentos de Informática;1;Anual;2;Ingeniería Eléctrica;no
+9;Física II;2;Anual;5;Ciencias Básicas;no
+10;Probabilidad y Estadística;2;Anual;3;Ciencias Básicas;no
+11;Electrotecnia I;2;Anual;6;Ingeniería Eléctrica;no
+12;Estabilidad;2;Anual;4;Ingeniería Eléctrica;no
+13;Mecánica Técnica;2;Anual;2;Ingeniería Eléctrica;no
+14;Integración Eléctrica II;2;Anual;3;Ingeniería Eléctrica;no
+15;Inglés I;2;Anual;2;Ciencias Básicas;no
+16;Análisis Matemático II;2;Anual;5;Ciencias Básicas;no
+17;Cálculo Numérico;2;Anual;2;Ingeniería Eléctrica;no
+18;Tecnología y Ensayo de los Materiales Eléctricos;3;Anual;5;Ingeniería Eléctrica;no
+19;Instrumentos y Mediciones Eléctricas;3;Anual;6;Ingeniería Eléctrica;no
+20;Teoría de los Campos;3;Anual;3;Ingeniería Eléctrica;no
+21;Física III;3;Anual;2;Ingeniería Eléctrica;no
+22;Máquinas Eléctricas I;3;Anual;5;Ingeniería Eléctrica;no
+23;Electrotecnia II;3;Anual;4;Ingeniería Eléctrica;no
+24;Termodinámica;3;Anual;3;Ingeniería Eléctrica;no
+25;Fundamentos Para el Análisis de Señales;3;Anual;2;Ingeniería Eléctrica;no
+26;Taller Interdisciplinario;3;Anual;4;Ingeniería Eléctrica;no
+27;Inglés II;4;Anual;2;Ciencias Básicas;no
+28;Economía;4;Anual;3;Ciencias Básicas;no
+29;Electrónica I;4;Anual;3;Ingeniería Eléctrica;no
+30;Máquinas Eléctricas II;4;Anual;6;Ingeniería Eléctrica;no
+31;Seguridad, Riesgo Eléctrico y Ambiente;4;Anual;3;Ingeniería Eléctrica;no
+32;Instalaciones Eléctricas y Luminotecnia;4;Anual;6;Ingeniería Eléctrica;no
+33;Control Automático;4;Anual;5;Ingeniería Eléctrica;no
+34;Máquinas Térmicas, Hidráulicas y de Fluidos;4;Anual;5;Ingeniería Eléctrica;no
+35;Legislación;4;Anual;2;Ciencias Básicas;no
+36;Electrónica II;5;Anual;6;Ingeniería Eléctrica;no
+37;Generación, Transmisión y Distribución de la Energía Eléctrica;5;Anual;6;Ingeniería Eléctrica;no
+38;Sistemas de Potencias;5;Anual;6;Ingeniería Eléctrica;no
+39;Accionamientos y Controles Eléctricos;5;Anual;4;Ingeniería Eléctrica;no
+40;Organización y Administración de Empresas;5;Anual;2;Ingeniería Eléctrica;no
+41;Proyecto Final;5;Anual;4;Ingeniería Eléctrica;no
+42;Prácticas Profesionales Supervisadas;5;Anual;150;Ingeniería Eléctrica;no
+43;Impacto Ambiental de Líneas y Centrales Eléctricas;5;Anual;2;Ingeniería Eléctrica;si
+44;Centrales y Protecciones Eléctricas;5;Anual;3;Ingeniería Eléctrica;si
+45;Legislación Laboral;5;Anual;2;Ingeniería Eléctrica;si
+46;Elementos de Máquinas y Tecnología Mecánica;5;Anual;3;Ingeniería Eléctrica;si
+47;Fuentes no Convencionales de Energía;5;Anual;3;Ingeniería Eléctrica;si
+48;Transmisión de Datos en Sistemas Eléctricos;5;Anual;3;Ingeniería Eléctrica;si

@@ -1,26 +1,31 @@
-id,title,author_id,subject_id,created_at
-1,¿Alguien me ayuda con el límite de sucesiones? No entiendo la demostración,1,1,2024-03-10 10:30:00
-2,Comparto apunte de Álgebra - Matrices y Determinantes,2,2,2024-03-12 15:20:00
-3,Clase práctica de Física I - Problemas de cinemática,3,3,2024-03-15 09:45:00
-4,Tips para rendir el parcial de Inglés I,4,4,2024-04-01 18:30:00
-5,Duda sobre estructuras de datos: ¿diferencia entre pila y cola?,5,6,2024-04-05 11:00:00
-6,Recurso de Arquitectura - Apunte sobre pipelining,6,7,2024-04-10 14:15:00
-7,Alguien tiene el TP de Sistemas y Procesos resuelto?,7,8,2024-04-12 20:30:00
-8,Ingeniería y Sociedad - Trabajo práctico sobre ética profesional,8,11,2024-04-15 08:00:00
-9,Duda con series de Fourier - Análisis Matemático II,9,9,2024-04-18 16:45:00
-10,Clase de Física II - Campo eléctrico resumen,10,10,2024-04-20 12:00:00
-11,Inglés II - Vocabulario técnico para sistemas,11,12,2024-04-22 19:00:00
-12,Sintaxis y Semántica - Gramática para el TP,12,13,2024-04-25 10:15:00
-13,Duda sobre pattern matching en Haskell,13,14,2024-04-28 17:30:00
-14,Sistemas Operativos - Ejercicios de planificación resueltos,14,15,2024-05-01 09:00:00
-15,Análisis de Sistemas - Diagramas de secuencia,15,16,2024-05-03 21:00:00
-16,Probabilidad - Ejercicios de combinatoria,16,17,2024-05-05 14:00:00
-17,Economía - Resumen de macroeconomía,17,18,2024-05-08 11:30:00
-18,Consulta sobre JOINs en SQL - Base de Datos,18,19,2024-05-10 16:00:00
-19,Desarrollo de Software - Metodologías ágiles resumen,19,20,2024-05-12 08:45:00
-20,Comunicación de Datos - Modelo OSI explicado,20,21,2024-05-15 13:00:00
-21,Análisis Numérico - Método de Newton-Raphson,1,22,2024-05-18 18:30:00
-22,Diseño de Sistemas - Patrones de arquitectura,2,23,2024-05-20 10:00:00
-23,Consulta sobre el seminario integrador - ¿Cómo elegir tema?,3,24,2024-05-22 15:45:00
-24,Ayuda con punteros en C - Algoritmos,4,6,2024-05-25 22:00:00
-25,Duda sobre herencia en POO - Paradigmas,5,14,2024-05-28 12:30:00
+id;title;author_id;subject_id;content;created_at
+1;¿Alguien me ayuda con el límite de sucesiones? No entiendo la demostración;1;1;Hola, estoy estudiando para el parcial y no logro entender la demostración del límite de sucesiones por epsilon. Alguien podría explicarlo con un ejemplo sencillo? Desde ya gracias.;2024-03-10 10:30:00
+2;Comparto apunte de Álgebra - Matrices y Determinantes;2;2;Buenas, les comparto un resumen que hice sobre matrices, determinantes y sus propiedades. Tiene ejercicios resueltos. Espero que les sirva!;2024-03-12 15:20:00
+3;Clase práctica de Física I - Problemas de cinemática;3;3;Subo los problemas resueltos de la clase práctica de cinemática. Incluye movimiento rectilíneo uniforme, uniformemente variado y caída libre. Cualquier duda consulten.;2024-03-15 09:45:00
+4;Tips para rendir el parcial de Inglés I;4;4;Comparto algunos consejos que me sirvieron para rendir el parcial: vocabulario técnico, tiempos verbales más usados y comprensión de textos. Éxitos a todos!;2024-04-01 18:30:00
+5;Duda sobre estructuras de datos: ¿diferencia entre pila y cola?;5;6;Alguien me podría explicar con ejemplos cuándo conviene usar una pila y cuándo una cola? Entiendo la teoría pero me cuesta aplicarlo en problemas reales.;2024-04-05 11:00:00
+6;Recurso de Arquitectura - Apunte sobre pipelining;6;7;Hice un resumen sobre pipelining en procesadores: etapas, hazards y cómo se resuelven. También hay ejemplos de ciclo de instrucciones. Espero que ayude.;2024-04-10 14:15:00
+7;Alguien tiene el TP de Sistemas y Procesos resuelto?;7;8;Estoy trabado con el trabajo práctico de análisis de procesos de negocio. Alguien que lo haya resuelto podría compartir su enfoque? No pido el código, solo orientación.;2024-04-12 20:30:00
+8;Ingeniería y Sociedad - Trabajo práctico sobre ética profesional;8;11;Buenas, estamos armando el TP sobre ética en ingeniería. Comparto la bibliografía que encontramos y el esquema que pensamos seguir. Acepto sugerencias!;2024-04-15 08:00:00
+9;Duda con series de Fourier - Análisis Matemático II;9;9;No entiendo cómo calcular los coeficientes de la serie de Fourier para funciones pares e impares. Alguien tiene algún truco para recordar las fórmulas?;2024-04-18 16:45:00
+10;Clase de Física II - Campo eléctrico resumen;10;10;Subo un resumen de campo eléctrico: ley de Coulomb, campo de distribuciones continuas, líneas de campo y potencial eléctrico. Incluye ejercicios tipo parcial.;2024-04-20 12:00:00
+11;Inglés II - Vocabulario técnico para sistemas;11;12;Comparto un glosario de términos técnicos en inglés orientado a sistemas de información. Útil para leer documentación y artículos.;2024-04-22 19:00:00
+12;Sintaxis y Semántica - Gramática para el TP;12;13;Hola, alguien tiene la gramática del TP resuelta? Tengo dudas con la implementación de la tabla de parsing. Agradezco cualquier ayuda.;2024-04-25 10:15:00
+13;Duda sobre pattern matching en Haskell;13;14;Estoy aprendiendo Haskell y no termino de entender cómo funciona el pattern matching en funciones recursivas. Podrían darme algún ejemplo claro?;2024-04-28 17:30:00
+14;Sistemas Operativos - Ejercicios de planificación resueltos;14;15;Comparto ejercicios resueltos de planificación de procesos: FCFS, SJF, Round Robin y prioridades. Incluye diagramas de Gantt paso a paso.;2024-05-01 09:00:00
+15;Análisis de Sistemas - Diagramas de secuencia;15;16;Buenas, alguien tiene algún ejemplo de diagrama de secuencia para un caso de uso complejo? Me cuesta modelar las interacciones con múltiples alternativas.;2024-05-03 21:00:00
+16;Probabilidad - Ejercicios de combinatoria;16;17;Subo una guía de ejercicios de combinatoria resueltos: permutaciones, combinaciones, variaciones y aplicaciones a probabilidad. Espero que sirva!;2024-05-05 14:00:00
+17;Economía - Resumen de macroeconomía;17;18;Resumen de los conceptos clave de macroeconomía: PIB, inflación, desempleo, políticas fiscal y monetaria. Incluye gráficos explicativos.;2024-05-08 11:30:00
+18;Consulta sobre JOINs en SQL - Base de Datos;18;19;Alguien podría explicarme la diferencia práctica entre INNER JOIN, LEFT JOIN y RIGHT JOIN? Tengo un TP y no sé cuál usar para obtener ciertos datos.;2024-05-10 16:00:00
+19;Desarrollo de Software - Metodologías ágiles resumen;19;20;Comparto un cuadro comparativo de metodologías ágiles: Scrum, Kanban, XP. Incluye roles, artefactos y ceremonias. Para el que esté preparando el final.;2024-05-12 08:45:00
+20;Comunicación de Datos - Modelo OSI explicado;20;21;Explicación sencilla de las 7 capas del modelo OSI con ejemplos prácticos de cada una. También diferencias con el modelo TCP/IP.;2024-05-15 13:00:00
+21;Análisis Numérico - Método de Newton-Raphson;1;22;Alguien tiene implementado el método de Newton-Raphson en Python? Me serviría para comparar con mi código porque no converge bien para ciertas funciones.;2024-05-18 18:30:00
+22;Diseño de Sistemas - Patrones de arquitectura;2;23;Resumen de patrones de arquitectura de software: MVC, capas, microkernel, microservicios. Con ejemplos de cuándo usar cada uno.;2024-05-20 10:00:00
+23;Consulta sobre el seminario integrador - ¿Cómo elegir tema?;3;24;Hola, estamos por empezar el seminario integrador y no sabemos bien cómo elegir el tema. Alguien que ya lo haya cursado podría dar recomendaciones?;2024-05-22 15:45:00
+24;Ayuda con punteros en C - Algoritmos;4;6;Tengo un ejercicio de punteros dobles en C que no me sale. Alguien podría explicarme cómo funciona la aritmética de punteros en arreglos multidimensionales?;2024-05-25 22:00:00
+25;Duda sobre herencia en POO - Paradigmas;5;14;No entiendo bien cuándo usar herencia y cuándo composición. Alguien podría dar ejemplos concretos en Java o Python? Gracias!;2024-05-28 12:30:00
+26;Duda sobre semáforos en Sistemas Operativos;6;15;Alguien podría explicarme cómo sincronizar productor-consumidor con semáforos? Me pierdo con los valores iniciales de los semáforos.;2024-06-01 09:15:00
+27;Comparto proyecto final de Base de Datos - E-commerce;7;19;Les comparto mi proyecto final de BD sobre un e-commerce. Incluye DER, script SQL con 15 tablas y consultas complejas con JOINs y subconsultas.;2024-06-03 14:30:00
+28;Ayuda con optimización en Análisis Numérico;8;22;Estoy implementando el método de la secante y necesito optimizarlo para que converja más rápido. Alguien tiene experiencia con variantes del método?;2024-06-05 11:45:00
+29;Resumen de Testing - Desarrollo de Software;9;20;Comparto resumen de pruebas de software: unitarias, integración, sistema, aceptación. Incluye herramientas como JUnit y Selenium.;2024-06-07 17:00:00
+30;Duda sobre enrutamiento en Redes de Datos;10;21;No entiendo la diferencia entre enrutamiento estático y dinámico. Alguien podría explicar cuándo conviene usar cada uno con ejemplos reales?;2024-06-09 10:00:00

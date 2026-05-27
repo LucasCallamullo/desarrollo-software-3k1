@@ -1,47 +1,70 @@
 const sequelize = require('../config/db.js');
 
 /**
+ * ================================================================
  * GLOBAL MODEL REGISTRY
+ * ================================================================
  * 
- * Import all models from every module in the monolith.
- * This centralized approach allows cross-module relationships
- * (e.g., Posts belonging to Users, Courses having Teachers, etc.)
+ * This file centralizes all models and handles their associations.
+ * 
+ * The "associate pattern" works as follows:
+ *   1. All models are imported and registered in the `models` object
+ *   2. After all models are loaded, we iterate over them
+ *   3. If a model has an `associate` function, we call it with the models map
+ *   4. This allows models to reference each other without circular dependency issues
+ * 
+ * This pattern is similar to Spring Boot / Django ORM.
+ * 
+ * @see Each model file defines its own `associate(models)` function
+ * ================================================================
  */
+
+// ============================================================
+// IMPORTS
+// ============================================================
+
+// Auth module
 const User = require('../../users/models/User.js');
 
+// Subjects module
 const Degree = require('../../subjects/models/Degree.js');
 const Subject = require('../../subjects/models/Subject.js');
 const Commission = require('../../subjects/models/Commission.js');
 const Course = require('../../subjects/models/Course.js');
 
-const Post = require('../../posts/models/Post.js');
-const Comment = require('../../posts/models/Comment.js');
+// Forum module
+const Post = require('../../forum/models/Post.js');
+const Comment = require('../../forum/models/Comment.js');
 
+// ============================================================
+// MODEL REGISTRY
+// ============================================================
 
-
-/**
- * Model Registry
- * Groups all models in a single object for easy iteration and association.
- */
 const models = {
-    Degree,       
-    Subject,        
+    // Users
+    User,
+    
+    // Subjects
+    Degree,
+    Subject,
     Commission,
     Course,
+    
+    // Forum
     Post,
-    Comment,
-    User
+    Comment
 };
 
+// ============================================================
+// ASSOCIATION WIRING
+// ============================================================
+
 /**
- * Associate Models
+ * Iterate through all models and execute their `associate` function.
+ * This must be done AFTER all models are loaded to avoid circular dependencies.
  * 
- * This block automatically executes the `associate` function defined in each model file.
- * It replicates the behavior of Spring Boot / Django ORM, resolving foreign keys
- * and relationships (1:N, N:M) without circular dependency issues.
- * 
- * The associate pattern separates model definition from relationship declaration,
- * allowing Sequelize to load all models first, then wire them together.
+ * The `associate` function receives the complete models map, allowing
+ * cross-references like `models.User`, `models.Subject`, etc.
  */
 Object.keys(models).forEach((modelName) => {
     if (models[modelName].associate) {
@@ -49,12 +72,10 @@ Object.keys(models).forEach((modelName) => {
     }
 });
 
-/**
- * Export all models and the Sequelize instance.
- * 
- * - Models: Used for queries (User.findByPk, Post.create, etc.)
- * - sequelize: Used for transactions, sync(), authenticate(), etc.
- */
+// ============================================================
+// EXPORTS
+// ============================================================
+
 module.exports = {
     ...models,
     sequelize
